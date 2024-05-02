@@ -23,8 +23,6 @@ const App = () => {
     "What is the most popular food in the world?",
     "What is the most popular drink in the world?",
     "What is the most popular animal in the world?",
-    "What is the most popular color in the world?",
-    "What is the most popular name in the world?",
     "What is the most popular movie in the world?",
     "What is the most popular song in the world?",
     "What is the most popular book in the world?",
