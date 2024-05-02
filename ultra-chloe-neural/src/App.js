@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import SpeechRecognition from 'react-speech-recognition';
+import Dictaphone from './Dictaphone';
+import VoiceToText from './VoiceToText';
 
 
 const App = () => {
@@ -94,6 +97,9 @@ const App = () => {
   }
   return (
     <div className="app">
+
+      {/* <Dictaphone transcript={userChat}/> */}
+      {/* <VoiceToText /> */}
         <p>What do you want to know?
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         </p>
