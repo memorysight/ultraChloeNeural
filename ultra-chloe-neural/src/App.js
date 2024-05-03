@@ -67,11 +67,11 @@ const App = () => {
       console.log(data);
       setChatHistory(oldChatHistory => [...oldChatHistory, {
         role: "user",
-        parts: value
+        parts: [{text: value }]
       },
       {
         role: "model",
-        parts: data
+        parts: [{text: data }]
       }
     ]);
     setValue("")
@@ -119,7 +119,7 @@ const App = () => {
                 {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
                 </span>
                               {/* Render markdown content here */}
-              <ReactMarkdown>{chatItem.parts}</ReactMarkdown>
+              <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
                 </p>
           </div>)}
           
