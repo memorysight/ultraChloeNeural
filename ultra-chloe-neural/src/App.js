@@ -100,8 +100,8 @@ const App = () => {
               <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
           </video>
 
-      {/* <Dictaphone transcript={userChat}/> */}
-      {/* <VoiceToText /> */}
+      <Dictaphone/>
+       <VoiceToText /> 
         <p>What do you want to know?
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         </p>
