@@ -23,8 +23,6 @@ const App = () => {
     "What is the most popular food in the world?",
     "What is the most popular drink in the world?",
     "What is the most popular animal in the world?",
-    "What is the most popular color in the world?",
-    "What is the most popular name in the world?",
     "What is the most popular movie in the world?",
     "What is the most popular song in the world?",
     "What is the most popular book in the world?",
@@ -69,11 +67,11 @@ const App = () => {
       console.log(data);
       setChatHistory(oldChatHistory => [...oldChatHistory, {
         role: "user",
-        parts: value
+        parts: [{text: value }]
       },
       {
         role: "model",
-        parts: data
+        parts: [{text: data }]
       }
     ]);
     setValue("")
@@ -98,6 +96,10 @@ const App = () => {
   return (
     <div className="app">
 
+          <video autoPlay muted loop id="bg-video">
+              <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
+          </video>
+
       {/* <Dictaphone transcript={userChat}/> */}
       {/* <VoiceToText /> */}
         <p>What do you want to know?
@@ -121,7 +123,7 @@ const App = () => {
                 {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
                 </span>
                               {/* Render markdown content here */}
-              <ReactMarkdown>{chatItem.parts}</ReactMarkdown>
+              <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
                 </p>
           </div>)}
           
@@ -132,7 +134,6 @@ const App = () => {
 }
 
 export default App;
-
 
 
 
