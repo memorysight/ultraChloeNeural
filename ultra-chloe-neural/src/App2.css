@@ -1,0 +1,232 @@
+.tt0{fill:url(#SVGID_1_);stroke:#000000;stroke-miterlimit:10;}
+	.tt1{fill:#73000a;stroke:#000000;stroke-miterlimit:10;}
+	.tt2{fill:#ebebeb;stroke:#000000;stroke-miterlimit:10;}
+	.tt3{fill:#b9002e;stroke:#000000;stroke-miterlimit:10;}
+	.tt4{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.tt5{fill:#3217FF;stroke:#000000;stroke-miterlimit:10;}
+	.tt6{fill:#3c4b36;stroke:#000000;stroke-miterlimit:10;}
+	.tt7{fill:#8dcea1;stroke:#000000;stroke-miterlimit:10;}
+	.tt8{fill:#3E17FF;stroke:#000000;stroke-miterlimit:10;}
+	.tt9{fill:#0F005C;}
+	.tt10{fill:url(#SVGID_2_);}
+	.tt11{fill:url(#SVGID_3_);stroke:#000000;stroke-miterlimit:10;}
+	.tt12{fill:#3E0045;stroke:#000000;stroke-miterlimit:10;}
+	.tt13{fill:url(#SVGID_4_);stroke:#000000;stroke-miterlimit:10;}
+	.tt14{fill:url(#SVGID_5_);}
+	.tt15{fill:url(#SVGID_6_);}
+
+@keyframes draw-st3{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(540deg) rotateX(270deg);
+    }
+}
+/* linked to st0
+*/
+.tt3{
+    
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-st0 22s infinite;
+    transform-origin: 35% 75%;
+    
+}
+
+
+
+
+
+@keyframes draw-st4{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(540deg) rotateX(360deg);
+    }
+}
+
+
+
+.tt4{
+    display: hidden;
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-sto 3s infinite;
+    transform-origin: 75% 50%;
+    
+}
+
+
+
+
+
+@keyframes draw-st2{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(720deg) rotateX(270deg);  
+    }
+}
+
+.tt2{
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-st3 16s infinite;
+    transform-origin: 50% 50%;
+    
+}
+
+@keyframes draw-st0{
+    from {
+        stroke-dasharray:-650;
+        transform: rotateY(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:0;
+        transform: rotateY(360deg);
+    }
+}
+/* for main element
+*/
+
+.tt0{
+    stroke-dasharray: -650;
+    stroke-dashoffset: 650;
+    animation: draw-st3 6s infinite;
+    
+}
+
+
+
+
+@keyframes draw-st3{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(540deg) rotateX(270deg);
+    }
+}
+/* linked to st0
+*/
+.tt3{
+    
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-st0 22s infinite;
+    transform-origin: 35% 75%;
+    
+}
+
+
+
+
+
+@keyframes draw-st4{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(540deg) rotateX(360deg);
+    }
+}
+
+
+
+.tt9{
+    display: hidden;
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-sto 3s infinite;
+    transform-origin: 75% 50%;
+    
+}
+
+
+
+
+
+@keyframes draw-st2{
+    from {
+        stroke-dasharray:650;
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:-659;
+        transform: rotateY(720deg) rotateX(270deg);  
+    }
+}
+
+.tt8{
+    stroke-dasharray: 650;
+    stroke-dashoffset:-650;
+    animation: draw-st3 16s infinite;
+    transform-origin: 50% 50%;
+    
+}
+
+@keyframes draw-st0{
+    from {
+        stroke-dasharray:-650;
+        transform: rotateY(0deg);
+    }
+    
+    to {
+        
+        stroke-dashoffset:0;
+        transform: rotateY(360deg);
+    }
+}
+/* for main element
+*/
+
+.tt7{
+    stroke-dasharray: -650;
+    stroke-dashoffset: 650;
+    animation: draw-st3 6s infinite;
+    
+}
+.svg{
+    opacity:77;
+}
+
+.text{
+    color: lightseagreen;
+    text-decoration: bold underline;
+   
+    font-family: 'Abel', sans-serif;
+    font-size:42px;
+}
+
+.textarea{
+    font-size: 88px;
+    font: 100px
+
+}

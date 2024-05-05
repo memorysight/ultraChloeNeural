@@ -3,6 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import SVGMADness from './SVGMaddness';
+import './App2.css';
 
 
 const App = () => {
@@ -98,7 +100,13 @@ const App = () => {
 
       {/* <Dictaphone transcript={userChat}/> */}
       {/* <VoiceToText /> */}
-        <p>What do you want to know?
+
+        
+      <video autoPlay muted loop id="bg-video">
+              <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
+       </video>
+
+        <p>Ask Chloe anything you want..she knows it
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         </p>
         <div className="input-container">
@@ -123,7 +131,14 @@ const App = () => {
                 </p>
           </div>)}
           
+        
+
+
+
+        
         </div>
+
+       
 
     </div>
   );
