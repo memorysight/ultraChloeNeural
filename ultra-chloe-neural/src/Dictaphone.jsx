@@ -1,7 +1,8 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import {useEffect} from 'react';
 
-const Dictaphone = () => {
+const Dictaphone = ({utterQuestion}) => {
 
    
 
@@ -12,9 +13,15 @@ const Dictaphone = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  useEffect(()=>{
+    utterQuestion(transcript);
+ },[transcript])
+
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
+
+
 
 
   //may not work in some browsers

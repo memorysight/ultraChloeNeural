@@ -46,6 +46,10 @@ const App = () => {
     setValue(randomValue);
   }
 
+  const utterQuestion = (text)=>{
+      setValue(text);
+  }
+
   const getReponse = async () => {
     if (!value) {
       setError("Error: Please ask a question");
@@ -100,7 +104,7 @@ const App = () => {
               <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
           </video>
 
-      <Dictaphone/>
+      <Dictaphone utterQuestion = {utterQuestion}/>
        <VoiceToText /> 
         <p>What do you want to know?
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
