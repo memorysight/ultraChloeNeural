@@ -31,7 +31,7 @@ function VoiceToText() {
 
     return (
         <div>
-      <textarea value={value} onChange={(event) => setValue(event.target.value)} />
+      {/* <textarea value={value} onChange={(event) => setValue(event.target.value)} />
       <button type="button" onClick={() => speak({ text: value, voice: voices[2] })}>
         Speak
       </button>
@@ -43,7 +43,7 @@ function VoiceToText() {
       </button>
       <button type="button" onClick={resume}>
         Resume
-      </button>
+      </button> */}
       <p>{speaking && 'Voice is speaking'}</p>
       <p>{ended && 'Voice has ended'}</p>
       <div>
