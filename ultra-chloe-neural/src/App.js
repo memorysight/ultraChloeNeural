@@ -106,8 +106,8 @@ const App = () => {
 
       <Dictaphone utterQuestion = {utterQuestion}/>
        <VoiceToText /> 
-        <p>What do you want to know?
-        <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
+        <p>Please ask a question:
+        {/* <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button> */}
         </p>
         <div className="input-container">
           <input 
@@ -116,7 +116,7 @@ const App = () => {
             onChange={(e) => setValue(e.target.value)} 
             onKeyDown={handleKeyDown} />
 
-          {!error && <button onClick={getReponse}>Ask Me</button>}
+          {!error && <button onClick={getReponse}>Enter</button>}
           {error && <button onClick={clear}>Clear</button>}
         </div>
         {error && <p>{error}</p>}
