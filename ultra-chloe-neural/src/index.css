@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Old+Standard+TT|Orbitron|Oswald|Righteous|Sigmar+One&display=swap');
+
+
+
+
 * {
-  font-family: sans-serif;
+  font-family: Orbitron;
 }
 
 body {
@@ -11,27 +16,29 @@ body {
   color: #af3d4d;
   display: flex;
   justify-content: center;
+  -webkit-animation: bgcolor 20s infinite;
+  animation: bgcolor 10s infinite;
 }
 
-/* @keyframes background-color {
+/* @keyframes bgcolor {
   0% {
-      background-color: #1fbfd4
+      background-color: #1f2222
   }
 
   45% {
-      background-color: #74be74
+      background-color: #182018
   }
 
   60% {
-      background-color: #13a883
+      background-color: #212b28
   }
 
   90% {
-      background-color: rgb(188, 226, 190)
+      background-color: rgb(54, 14, 18)
   }
 
   100% {
-      background-color: #aaf7c8
+      background-color: #223031
   }
 } */
 
