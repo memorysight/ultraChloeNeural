@@ -15,7 +15,10 @@ const App = () => {
 
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
+    utterance.rate = 1.3;
     synth.speak(utterance);
+    // speechSynthesis.cancel();
   };
 
 
@@ -100,6 +103,8 @@ const App = () => {
     }
   }
 
+
+
   const clear = () => {
     setValue("");
     setError("");
@@ -111,6 +116,18 @@ const App = () => {
       getReponse();
     }
   }
+
+  const video = document.getElementById("bg-video");
+
+  // Set the current playback position to 10 seconds
+  video.currentTime = 10;
+  
+  // Set the loop property to true
+  video.loop = true;
+
+
+
+
   return (
     <div className="app">
 
