@@ -11,10 +11,10 @@ const App = () => {
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
 
-   video.currentTime = 10;
-  
-  
-  video.loop = true;
+
+
+  // video.currentTime = 10;
+  // video.loop = true;
  
  
   const speak = (text) => {
@@ -130,17 +130,7 @@ const App = () => {
     }
   }
 
-  // const video = document.getElementById("bg-video");
-
-  // // Set the current playback position to 10 seconds
-  // video.currentTime = 10;
   
-  // // Set the loop property to true
-  // video.loop = true;
-
-
-
-
   return (
     <div className="app">
 
