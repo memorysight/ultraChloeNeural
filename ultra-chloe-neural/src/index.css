@@ -12,12 +12,16 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #1e2122;
+  /* background-color: #1e2122; */
+
+  background: linear-gradient(to right, #000000, #444444);
+  
+  
   color: #af3d4d;
   display: flex;
   justify-content: center;
-  -webkit-animation: bgcolor 20s infinite;
-  animation: bgcolor 10s infinite;
+  -webkit-animation: bgcolor 80s infinite;
+  animation: bgcolor 50s 15s infinite;
 }
 
 /* @keyframes bgcolor {
@@ -38,7 +42,7 @@ body {
   }
 
   100% {
-      background-color: #223031
+      background-color: #060d0e
   }
 } */
 
