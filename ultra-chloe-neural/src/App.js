@@ -3,9 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
-import { useRef, useEffect } from 'react';
-
-
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -13,10 +10,13 @@ const App = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
+
+   video.currentTime = 10;
+  
+  
+  video.loop = true;
  
  
-
-
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
@@ -35,13 +35,6 @@ const App = () => {
     // Speak the utterance
     speechSynthesis.speak(utterance);
   };
-
-  
-    // synth.speak(utterance);
-    // speechSynthesis.cancel();
-  
-
-
 
 
   const surpriseOptions = [
@@ -132,7 +125,7 @@ const App = () => {
   }
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent the form from being submitted
+      e.preventDefault(); 
       getReponse();
     }
   }
@@ -189,117 +182,3 @@ const App = () => {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useState } from 'react';
-// import ReactMarkdown from 'react-markdown';
-
-
-// const App = () => {
-//   const [value, setValue] = useState("");
-//   const [error, setError] = useState("");
-//   const [chatHistory, setChatHistory] = useState([]);
-
-
-//   const getReponse = async () => {
-//     if (!value) {
-//       setError("Error: Please ask a question");
-//       return;
-//     }
-//     try {
-//       const options = {
-//         method: 'POST',
-//         body: JSON.stringify({
-//           history: chatHistory,
-//           message: value
-//         }),
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }
-//       const response = await fetch('http://localhost:8000/gemini', options);
-//       const data = await response.text()
-//       console.log(data);
-//       setChatHistory(oldChatHistory => [...oldChatHistory, {
-//         role: "user",
-//         parts: value
-//       },
-//       {
-//         role: "model",
-//         parts: data
-//       }
-//     ]);
-//     setValue("")
-
-//     } catch (error) {
-//       console.error(error);
-//       setError("Error: Something went wrong");
-//     }
-//   }
-
-//   const clear = () => {
-//     setValue("");
-//     setError("");
-//     setChatHistory([]);
-//   }
-//   const handleKeyDown = (e) => {
-//     if (e.key === 'Enter') {
-//       e.preventDefault(); // Prevent the form from being submitted
-//       getReponse();
-//     }
-//   }
-//   return (
-//     <div className="app">
-//         <p>What do you want to know?
-//        </p>
-//         <div className="input-container">
-//           <input 
-//             value={value}
-//             placeholder="Type your question here"
-//             onChange={(e) => setValue(e.target.value)} 
-//             onKeyDown={handleKeyDown} />
-
-//           {!error && <button onClick={getReponse}>Ask Me</button>}
-//           {error && <button onClick={clear}>Clear</button>}
-//         </div>
-//         {error && <p>{error}</p>}
-//         <div className="search-result">
-//           {chatHistory.map((chatItem, _index) => <div key={_index}>
-//             <p className="answer">
-//               <span style={{ color: '#00ffa2', fontWeight: 600 }}>
-//                 {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
-//                 </span>
-//                               {/* Render markdown content here */}
-//               <ReactMarkdown>{chatItem.parts}</ReactMarkdown>
-//                 </p>
-//           </div>)}
-          
-//         </div>
-
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
