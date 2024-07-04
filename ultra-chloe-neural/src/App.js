@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import { useRef, useEffect } from 'react';
 
 
 
@@ -12,6 +13,7 @@ const App = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
+ 
  
 
 
