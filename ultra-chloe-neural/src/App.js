@@ -5,10 +5,14 @@ import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 
 
+
 const App = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+
+
+
 
   const surpriseOptions = [
     "When is Christmas?",
@@ -45,6 +49,8 @@ const App = () => {
     const randomValue = surpriseOptions[Math.floor(Math.random() * surpriseOptions.length)];
     setValue(randomValue);
   }
+
+
 
   const utterQuestion = (text)=>{
       setValue(text);
