@@ -10,6 +10,13 @@ const App = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  const synth = window.speechSynthesis;
+
+
+  const speak = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+  };
 
 
 
@@ -85,6 +92,7 @@ const App = () => {
       }
     ]);
     setValue("")
+    speak(data);
 
     } catch (error) {
       console.error(error);
