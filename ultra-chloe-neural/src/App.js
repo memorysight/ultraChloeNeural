@@ -11,6 +11,7 @@ const App = () => {
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const synth = window.speechSynthesis;
+ 
 
 
   const speak = (text) => {
