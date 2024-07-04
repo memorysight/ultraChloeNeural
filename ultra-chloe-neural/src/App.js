@@ -11,6 +11,7 @@ const App = () => {
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const synth = window.speechSynthesis;
+  const video = document.getElementById("bg-video");
  
 
 
@@ -18,9 +19,25 @@ const App = () => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
     utterance.rate = 1.3;
-    synth.speak(utterance);
-    // speechSynthesis.cancel();
+
+     // Start the video playback when the utterance starts speaking
+     utterance.onstart = () => {
+      video.play();
+    };
+
+    // Stop the video playback when the utterance stops speaking
+    utterance.onend = () => {
+      video.pause();
+    };
+
+    // Speak the utterance
+    speechSynthesis.speak(utterance);
   };
+
+  
+    // synth.speak(utterance);
+    // speechSynthesis.cancel();
+  
 
 
 
@@ -118,13 +135,13 @@ const App = () => {
     }
   }
 
-  const video = document.getElementById("bg-video");
+  // const video = document.getElementById("bg-video");
 
-  // Set the current playback position to 10 seconds
-  video.currentTime = 10;
+  // // Set the current playback position to 10 seconds
+  // video.currentTime = 10;
   
-  // Set the loop property to true
-  video.loop = true;
+  // // Set the loop property to true
+  // video.loop = true;
 
 
 
