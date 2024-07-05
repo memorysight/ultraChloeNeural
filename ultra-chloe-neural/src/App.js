@@ -141,7 +141,7 @@ const App = () => {
       <Dictaphone utterQuestion = {utterQuestion}/>
        <VoiceToText /> 
         <p>Please ask a question:
-        {/* <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button> */}
+        <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         </p>
         <div className="input-container">
           <input 
