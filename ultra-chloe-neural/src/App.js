@@ -53,7 +53,7 @@ const App = () => {
     if (surpriseElement) {
       surpriseElement.disabled = true;
     }
-  };
+  };   
 
   const handleStopSpeaking = () => {
     // Enable the surprise me button
