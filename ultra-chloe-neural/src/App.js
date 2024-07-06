@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -130,7 +131,14 @@ const App = () => {
     }
   }
 
-  
+
+    // Use useEffect to save chatHistory to localStorage
+    useEffect(() => {
+      // Save the chat history to local storage
+      localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    }, [chatHistory]);
+
+    
   return (
     <div className="app">
 
