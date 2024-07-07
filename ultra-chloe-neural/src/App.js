@@ -5,12 +5,14 @@ import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 
 
+
 const App = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
+
 
 
 
