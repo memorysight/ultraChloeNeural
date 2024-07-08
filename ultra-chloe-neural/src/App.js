@@ -4,29 +4,24 @@ import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 
-
-
 const App = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
 
-
-
-
   // video.currentTime = 10;
   // video.loop = true;
- 
- 
+
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
     utterance.rate = 1.3;
 
-     // Start the video playback when the utterance starts speaking
-     utterance.onstart = () => {
+    // Start the video playback when the utterance starts speaking
+    utterance.onstart = () => {
       video.play();
     };
 
@@ -38,7 +33,6 @@ const App = () => {
     // Speak the utterance
     speechSynthesis.speak(utterance);
   };
-
 
   const surpriseOptions = [
     "When is Christmas?",
@@ -76,15 +70,15 @@ const App = () => {
     setValue(randomValue);
   }
 
-
-
-  const utterQuestion = (text)=>{
-      setValue(text);
+  const utterQuestion = (text) => {
+    setValue(text);
   }
 
   const getReponse = async () => {
+    setLoading(true);
     if (!value) {
       setError("Error: Please ask a question");
+      setLoading(false);
       return;
     }
     try {
@@ -103,80 +97,79 @@ const App = () => {
       console.log(data);
       setChatHistory(oldChatHistory => [...oldChatHistory, {
         role: "user",
-        parts: [{text: value }]
+        parts: [{ text: value }]
       },
       {
         role: "model",
-        parts: [{text: data }]
+        parts: [{ text: data }]
       }
-    ]);
-    setValue("")
-    speak(data);
-
+      ]);
+      setLoading(false);
+      setValue("")
+      speak(data);
     } catch (error) {
       console.error(error);
       setError("Error: Something went wrong");
+      setLoading(false);
     }
   }
-
-
 
   const clear = () => {
     setValue("");
     setError("");
     setChatHistory([]);
   }
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); 
+      e.preventDefault();
       getReponse();
     }
   }
 
+  // Use useEffect to save chatHistory to localStorage
+  useEffect(() => {
+    // Save the chat history to local storage
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+  }, [chatHistory]);
 
-    // Use useEffect to save chatHistory to localStorage
-    useEffect(() => {
-      // Save the chat history to local storage
-      localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-    }, [chatHistory]);
-
-    
   return (
     <div className="app">
+      <video autoPlay muted loop id="bg-video">
+        <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
+      </video>
+      <Dictaphone utterQuestion={utterQuestion} />
+      <VoiceToText />
 
-          <video autoPlay muted loop id="bg-video">
-              <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
-          </video>
-
-      <Dictaphone utterQuestion = {utterQuestion}/>
-       <VoiceToText /> 
-        <p>Please ask a question:
+      <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
-        </p>
-        <div className="input-container">
-          <input 
-            value={value}
-            placeholder="Type your question here"
-            onChange={(e) => setValue(e.target.value)} 
-            onKeyDown={handleKeyDown} />
+      </p>
 
-          {!error && <button onClick={getReponse}>Enter</button>}
-          {error && <button onClick={clear}>Clear</button>}
-        </div>
-        {error && <p>{error}</p>}
-        <div className="search-result">
-          {chatHistory.map((chatItem, _index) => <div key={_index}>
-            <p className="answer">
-              <span style={{ color: '#00ffa2', fontWeight: 600 }}>
-                {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
-                </span>
-                              {/* Render markdown content here */}
-              <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
-                </p>
-          </div>)}
-          
-        </div>
+      <div className="input-container">
+        <input
+          value={value}
+          placeholder="Type your question here"
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={handleKeyDown} />
+        {!error && <button onClick={getReponse}>Enter</button>}
+        {error && <button onClick={clear}>Clear</button>}
+      </div>
 
+      {error && <p>{error}</p>}
+
+      <div className="search-result">
+        {chatHistory.map((chatItem, _index) => <div key={_index}>
+          <p className="answer">
+            <span style={{ color: '#00ffa2', fontWeight: 600 }}>
+              {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
+            </span>
+            {/* Render markdown content here */}
+            <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
+          </p>
+        </div>)}
+      </div>
+
+      {loading && <div className="loading">Processing API Request...</div>}
     </div>
   );
 }
