@@ -4,20 +4,57 @@
   font-family: Orbitron;
 }
 
+
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, #000000, #444444);
+  background: linear-gradient(to right, #000000, #444444); 
   color: #af3d4d;
   display: flex;
   justify-content: center;
-  -webkit-animation: bgcolor 80s infinite;
-  animation: bgcolor 50s 15s infinite;
+  /* -webkit-animation: bgcolor 465s linear 1s infinite alternate;
+  animation: bgcolor 465s linear 1s infinite alternate; */
 }
 
+
+/* animation-name
+animation-duration
+animation-timing-function
+animation-delay
+animation-iteration-count
+animation-direction
+animation-fill-mode
+animation-play-state */
+
+
+
 @keyframes bgcolor {
+  0% {
+    background-color: #1f2222
+  }
+
+  45% {
+    background-color: #182018
+  }
+
+  60% {
+    background-image: url("data:image/svg+xml,%3Csvg width='750' height='750' viewBox='0 0 750 750' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M539 321c-17 129-153 198-320 198-119 0-223-32-303-84C-8 202-13 120 16 47c29-73 113-120 212-120 63 0 122 24 171 64 49 40 88 96 107 160 19 64 25 135 12 204-13 69-63 124-128 148-65 24-137 24-202 0-65-24-115-79-128-148-21-69-12-140 12-204 49-104 129-184 231-204 102-20 210 47 259 148 49 101 78 216 78 320 0 104-29 209-78 320-49 101-157 168-259 148z' fill='%2300ffa2' fill-opacity='0.05'/%3E%3Cpath d='M189 321c-17 264 194 320 439 320 119 0 223-32 303-84 80-52 139-128 166-224 27-96 33-199 16-303-17-104-78-184-166-224-88-40-190-40-278 0-88 40-149 120-166 224-27 96-33 199-16 303 17 104 78 184 166 224 88 40 190 40 278 0 88-40 149-120 166-224 27-96 33-199 16-303-17-104-78-184-166-224-88-40-190-40-278 0-88 40-149 120-166 224-27 96-33 199-16 303 17 104 78 184 166 224 88 40 190 40 278 0 88-40 149-120 166-224z' fill='%23000'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 375 375' to='360 375 375' dur='24s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+    background-color: #212b28
+  }
+
+  90% {
+    background-color: rgb(54, 14, 18)
+  }
+
+  100% {
+    background-color: #060d0e
+  }
+}
+
+
+@keyframes bgcolor2 {
   0% {
     background-color: #1f2222
   }
