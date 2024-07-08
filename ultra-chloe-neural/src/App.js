@@ -15,6 +15,19 @@ const App = () => {
   // video.currentTime = 10;
   // video.loop = true;
 
+  const commands = [
+    {
+      command: 'enter',
+      callback: () => { getReponse(); }
+    }
+  ];
+
+  const handleResult = (result) => {
+    if (result.startsWith('enter')) {
+      getReponse();
+    }
+  }
+
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
