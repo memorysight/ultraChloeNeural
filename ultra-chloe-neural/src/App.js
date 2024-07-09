@@ -149,6 +149,7 @@ const App = () => {
 
   return (
     <div className="app">
+       <div className="bg-image">
       <video autoPlay muted loop id="bg-video">
         <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
       </video>
@@ -185,6 +186,7 @@ const App = () => {
 
       {loading && <div className="loading">Processing API Request...</div>}
     </div>
+     </div> 
   );
 }
 
