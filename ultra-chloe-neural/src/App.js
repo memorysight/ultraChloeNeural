@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import './index.css';
 
 const App = () => {
   const [value, setValue] = useState("");
