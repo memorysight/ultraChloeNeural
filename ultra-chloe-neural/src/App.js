@@ -12,9 +12,6 @@ const App = () => {
   const synth = window.speechSynthesis;
   const video = document.getElementById("bg-video");
 
-  // video.currentTime = 10;
-  // video.loop = true;
-
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
