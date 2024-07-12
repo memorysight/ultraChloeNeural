@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
-import AudioVisualizer from './AudioAnalyzer';
+
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -155,14 +155,6 @@ const App = () => {
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
       
-    <div className="MicVisualizer">
-          <div className="controls">
-            <button onClick={this.toggleMicrophone}>
-              {this.state.audio ? 'Stop Microphone' : 'Get microphone input'}
-            </button>
-          </div>
-          {this.state.audio ? <AudioAnalyzer audio={this.state.audio} /> : ''}
-        </div>
 
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
