@@ -3,14 +3,17 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import useSynthesizedVoices from './useSynthesizedVoices';
 
 const App = () => {
-  const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
+  const isSynthesized = useSynthesizedVoices();
+
   const synth = window.speechSynthesis;
-  const video = document.getElementById("bg-video");
+  const video = document.getElementById('bg-video');
 
   // video.currentTime = 10;
   // video.loop = true;
@@ -30,7 +33,7 @@ const App = () => {
 
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
+    utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === 'female')[2];
     utterance.rate = 1.3;
 
     // Start the video playback when the utterance starts speaking
@@ -48,34 +51,34 @@ const App = () => {
   };
 
   const surpriseOptions = [
-    "When is Christmas?",
-    "What is the capital of France?",
-    "What is the population of the world?",
-    "What is the tallest building in the world?",
-    "What is the largest country in the world?",
-    "What is the longest river in the world?",
-    "What is the smallest country in the world?",
-    "What is the most spoken language in the world?",
-    "What is the most popular sport in the world?",
-    "What is the most popular food in the world?",
-    "What is the most popular drink in the world?",
-    "What is the most popular animal in the world?",
-    "What is the most popular movie in the world?",
-    "What is the most popular song in the world?",
-    "What is the most popular book in the world?",
-    "What is the most popular game in the world?",
-    "What is the most popular app in the world?",
-    "What is the most popular website in the world?",
-    "What is the most popular social media in the world?",
-    "What is the most popular TV show in the world?",
-    "What is the most popular movie genre in the world?",
-    "What is the most popular music genre in the world?",
-    "What is the most popular book genre in the world?",
-    "What is the most popular game genre in the world?",
-    "What is the most popular app genre in the world?",
-    "What is the most popular website genre in the world?",
-    "What is the most popular social media genre in the world?",
-    "What is the most popular TV show genre?"
+    'When is Christmas?',
+    'What is the capital of France?',
+    'What is the population of the world?',
+    'What is the tallest building in the world?',
+    'What is the largest country in the world?',
+    'What is the longest river in the world?',
+    'What is the smallest country in the world?',
+    'What is the most spoken language in the world?',
+    'What is the most popular sport in the world?',
+    'What is the most popular food in the world?',
+    'What is the most popular drink in the world?',
+    'What is the most popular animal in the world?',
+    'What is the most popular movie in the world?',
+    'What is the most popular song in the world?',
+    'What is the most popular book in the world?',
+    'What is the most popular game in the world?',
+    'What is the most popular app in the world?',
+    'What is the most popular website in the world?',
+    'What is the most popular social media in the world?',
+    'What is the most popular TV show in the world?',
+    'What is the most popular movie genre in the world?',
+    'What is the most popular music genre in the world?',
+    'What is the most popular book genre in the world?',
+    'What is the most popular game genre in the world?',
+    'What is the most popular app genre in the world?',
+    'What is the most popular website genre in the world?',
+    'What is the most popular social media genre in the world?',
+    'What is the most popular TV show genre?'
   ]
 
   const surprise = () => {
@@ -90,7 +93,7 @@ const App = () => {
   const getReponse = async () => {
     setLoading(true);
     if (!value) {
-      setError("Error: Please ask a question");
+      setError('Error: Please ask a question');
       setLoading(false);
       return;
     }
@@ -118,18 +121,20 @@ const App = () => {
       }
       ]);
       setLoading(false);
-      setValue("")
-      speak(data);
+      setValue('')
+      if (isSynthesized) {
+        speak(data);
+      }
     } catch (error) {
       console.error(error);
-      setError("Error: Something went wrong");
+      setError('Error: Something went wrong');
       setLoading(false);
     }
   }
 
   const clear = () => {
-    setValue("");
-    setError("");
+    setValue('');
+    setError('');
     setChatHistory([]);
   }
 
