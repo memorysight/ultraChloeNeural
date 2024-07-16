@@ -238,3 +238,23 @@ a.active {
   transform: scale(1.1);
   box-shadow: 0px 0px 10px #00FF00;
 }
+
+/* .app{
+
+  display: flex;
+  padding: 30px;
+
+
+} */
+
+.game{
+  width: 560px;
+  height: 560px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game img {
+  width: 70px;
+  height: 70px;
+}
