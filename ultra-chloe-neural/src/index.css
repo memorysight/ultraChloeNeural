@@ -207,3 +207,34 @@ path{
       fill: gold;
   }
 }
+
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: #00FF00;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 2px solid #00FF00;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+a:hover {
+  background-color: #00FF00;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px #00FF00;
+}
+
+
+
+a.active {
+  background-color: #00FF00;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px #00FF00;
+}

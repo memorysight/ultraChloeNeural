@@ -5,7 +5,7 @@ function Layout() {
   return (
     <div>
       <header>
-        <h1>My App</h1>
+        <h1>Zoe: Advanced AI System</h1>
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
