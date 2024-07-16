@@ -8,7 +8,7 @@ function Layout() {
         <h1>Zoe: Advanced AI System</h1>
         <nav>
           <ul>
-            <li><a href="/">Challenge</a></li>
+            <li><a href="/">Zoe's Game</a></li>
             {/* <li><a href="/phoebe">Phoebe</a></li> */}
             <li><a href="/neural">Neural</a></li>
           </ul>
