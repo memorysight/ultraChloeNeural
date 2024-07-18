@@ -9,6 +9,7 @@ import { Suspense } from "react";
 // import {Ship1} from './Ship1';
 import { RoboticHead } from './RoboticHead'
 import {Text} from './Text';
+import './Enigma2.css';
 
 
 
@@ -29,7 +30,7 @@ export function SceneContainer() {
         {/* <Virus2 /> */}
        
        {/* <Virus1 /> */}
-       <RoboticHead />
+       <RoboticHead className='main' />
        {/* <Text /> */}
        
 

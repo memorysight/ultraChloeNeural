@@ -8,8 +8,8 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 120vh;
+  height: 120vh;
   background: linear-gradient(to right, #000000, #444444); 
   color: #af3d4d;
   display: flex;
@@ -260,8 +260,8 @@ a.active {
 }
 
 .engine{
-  width: 80vw;
-  height: 80vh;
+  width: 120vh;
+  height: 120vh;
   margin: 10vw;
   display: flex;
   flex-direction: column;
@@ -272,6 +272,12 @@ a.active {
 }
 
 
-
+.main {
+  position: relative;
+  width: 120vh;
+  height: 120vh;
+  overflow: hidden;
+  touch-action: none;
+}
 
 

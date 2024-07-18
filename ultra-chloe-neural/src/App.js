@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Challenge />} />
-          {/* <Route path="/phoebe" element={<Phoebe />} /> */}
           <Route path="/neural" element={<Neural />} />
           <Route path="/engine" element={<Enigma2 />} />
           <Route path="/instaApp" element={<InstaApp />} />

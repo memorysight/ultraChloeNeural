@@ -2,6 +2,7 @@ import {useLoader} from '@react-three/fiber';
 import {useEffect} from 'react';
 import {BufferAttribute, Color} from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import './Enigma2.css';
 
 export function RoboticHead(){
 
