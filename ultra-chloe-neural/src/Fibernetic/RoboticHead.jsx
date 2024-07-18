@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export function RoboticHead(){
 
-    const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + "models/roboticHead2.glb");
+    const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + "models/mind.glb");
 
     useEffect(()=>{
         if(gltf) return;

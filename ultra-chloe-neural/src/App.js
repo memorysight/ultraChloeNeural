@@ -13,7 +13,7 @@ function App() {
           <Route index element={<Challenge />} />
           {/* <Route path="/phoebe" element={<Phoebe />} /> */}
           <Route path="/neural" element={<Neural />} />
-          <Route path="/Fibernetic/enigma2" element={<Enigma2 />} />
+          <Route path="/engine" element={<Enigma2 />} />
        </Route>
       </Routes>
     </Router>
