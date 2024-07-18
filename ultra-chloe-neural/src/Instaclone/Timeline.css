@@ -1,0 +1,16 @@
+.timeline{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.timeline__left{
+    flex: 0.7;
+
+}
+
+.timeline__right{
+    flex: 0.3;
+    
+}

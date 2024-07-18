@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
 import Challenge from './Challenge';
 import Neural from './Neural';
-import Enigma2 from './Fibernetic/Enigma2'
+import Enigma2 from './Fibernetic/Enigma2';
+import InstaApp from './Instaclone/InstaApp';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           {/* <Route path="/phoebe" element={<Phoebe />} /> */}
           <Route path="/neural" element={<Neural />} />
           <Route path="/engine" element={<Enigma2 />} />
+          <Route path="/instaApp" element={<InstaApp />} />
        </Route>
       </Routes>
     </Router>

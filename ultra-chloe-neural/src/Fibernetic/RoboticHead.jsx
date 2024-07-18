@@ -21,13 +21,21 @@ export function RoboticHead(){
 
     return(
         <>
+            <mesh className='engine'>
             <primitive object={gltf.scene}/>
-            
+            </mesh>
+
+
+            <mesh position={[0, 100, 0]}>
+                <planeGeometry args={[1000,1000]}/>
+                <meshStandardMaterial color="white" transparent opacity={0.3}/>
+            </mesh>
         </>
     )
 }
 
 function Text({text, position}){
+
     // const font = useLoader(FontLoader, '/helvetiker_regular.typeface.json');
 
     return(

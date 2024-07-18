@@ -12,6 +12,7 @@ function Layout() {
             {/* <li><a href="/phoebe">Phoebe</a></li> */}
             <li><a href="/neural">Neural</a></li>
             <li><a href="/engine">Engine</a></li>
+            <li><a href="/instaApp">InstaApp</a></li>
           </ul>
         </nav>
       </header>
