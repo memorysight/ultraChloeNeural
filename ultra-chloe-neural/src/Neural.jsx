@@ -50,7 +50,7 @@ const Neural = () => {
   const surpriseOptions = [
     "How can AI systems solve the cure for cancer?",
     "What are the biggest weaknesses AI have against adversearial attacks?",
-    "What is the definition of a dark link?",
+    // "What is the definition of a dark link?",
     // "Is it true that MK Ultra was dealing with mind control?",
     "use airodump ng to list the local ip addresses in your area?",
     "Are humans susceptible to hacks if they have a neural link?",
