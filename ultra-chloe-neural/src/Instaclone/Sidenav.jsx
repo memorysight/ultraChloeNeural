@@ -9,6 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatIcon from '@mui/icons-material/Chat';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
+import Neural from '../Neural';
 
  function Sidenav() {
     return (
@@ -85,6 +86,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
           </button>
 
+         
 
 
           </div>

@@ -88,10 +88,13 @@ p {
   min-height: 95vh;
 }
 
+
+
 .search-result {
   margin-top: 20px;
   overflow: auto;
 }
+
 
 .surprise {
   opacity: 0;

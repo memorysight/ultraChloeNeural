@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
@@ -5,15 +6,13 @@ import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 
 const Neural = () => {
-  const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const synth = window.speechSynthesis;
-  const video = document.getElementById("bg-video");
 
-  // video.currentTime = 10;
-  // video.loop = true;
+  const synth = window.speechSynthesis;
+  const video = document.getElementById('bg-video');
 
   const commands = [
     {
@@ -184,6 +183,6 @@ const Neural = () => {
       {loading && <div className="loading">Processing API Request...</div>}
     </div>
   );
-}
+};
 
 export default Neural;
