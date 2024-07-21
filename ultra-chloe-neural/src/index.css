@@ -191,20 +191,20 @@ path{
 
 @keyframes draw{
   0%{
-      stroke-dasharray:-2226;
+      /* stroke-dasharray:-2226; */
   }
   25%{
       stroke:red;
-      fill: blue;
+      fill: rgb(135, 135, 170);
   }
   50%{
       stroke: lightblue;
       fill: gold;
   }
   100%{
-      stroke-dashoffset:0;
+      /* stroke-dashoffset:0; */
       stroke: yellow;
-      fill: gold;
+      fill: rgb(96, 187, 108);
   }
 }
 
@@ -217,14 +217,14 @@ a {
   font-size: 1rem;
   font-weight: bold;
   padding: 5px 10px;
-  border: 2px solid #00FF00;
+  /* border: 2px solid #00FF00; */
   border-radius: 10px;
   transition: all 0.3s ease;
   margin-right: 10px;
 }
 
 a:hover {
-  background-color: #00FF00;
+  background-color: #b2c7e2;
   color: #000;
   transform: scale(1.1);
   box-shadow: 0px 0px 10px #00FF00;
