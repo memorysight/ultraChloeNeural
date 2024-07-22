@@ -164,7 +164,7 @@ p {
 }
 
 button:hover {
-  background-color: #00ffa2;
+  background-color: #454c74;
   color: #000;
 }
 
@@ -194,7 +194,7 @@ path{
 
 @keyframes draw{
   0%{
-      stroke-dasharray:-2226;
+      /* stroke-dasharray:-2226; */
   }
   25%{
       stroke:red;
@@ -205,7 +205,7 @@ path{
       fill: gold;
   }
   100%{
-      stroke-dashoffset:0;
+      /* stroke-dashoffset:0; */
       stroke: yellow;
       fill: gold;
   }
@@ -220,14 +220,14 @@ a {
   font-size: 1rem;
   font-weight: bold;
   padding: 5px 10px;
-  border: 2px solid #00FF00;
+  border: 2px solid #f32626;
   border-radius: 10px;
   transition: all 0.3s ease;
   margin-right: 10px;
 }
 
 a:hover {
-  background-color: #00FF00;
+  background-color: #55579b;
   color: #000;
   transform: scale(1.1);
   box-shadow: 0px 0px 10px #00FF00;
