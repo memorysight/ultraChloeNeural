@@ -30,7 +30,7 @@ export function SceneContainer() {
         {/* <Virus2 /> */}
        
        {/* <Virus1 /> */}
-       <RoboticHead className='main' />
+       <RoboticHead  />
        {/* <Text /> */}
        
 
