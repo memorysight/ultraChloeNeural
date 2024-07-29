@@ -11,6 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 import '../src/App.css';
 
+
 function Layout() {
   return (
     <div>
@@ -19,10 +20,12 @@ function Layout() {
         <nav>
           <ul>
             <li><a href="/"><SearchIcon /> Zoe's Game</a></li>
-            <li><a href="/phoebe"><ExploreIcon /> Phoebe</a></li>
+            <li><a href="/chloeneuralapp"><ExploreIcon /> Chloe</a></li>
             <li><a href="/neural"><AddCircleOutlineIcon /> Neural</a></li>
             <li><a href="/engine"><FavoriteIcon /> Engine</a></li>
             <li><a href="/instaApp"><ManageSearchIcon /> InstaApp</a></li>
+            
+
           </ul>
         </nav>
       </header>
