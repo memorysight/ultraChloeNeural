@@ -11,10 +11,15 @@ const ChloeNeuralApp = () => {
   const [model, setModel] = useState(null);
 
   const loadModel = async () => {
-    const loadedModel = await qna.load();
-    setModel(loadedModel);
-    console.log('Model Loaded');
-  }
+    try {
+      const loadedModel = await qna.load();
+      setModel(loadedModel);
+      console.log('Model Loaded');
+    } catch (error) {
+      console.error('Error loading QNA model:', error);
+      alert('Sorry, there was an issue loading the model. Please try again.');
+    }
+  };
 
 
   useEffect(() => {
