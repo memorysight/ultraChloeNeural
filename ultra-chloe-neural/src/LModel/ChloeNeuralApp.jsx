@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState, Fragment } from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as qna from "@tensorflow-models/qna";
 
-
-
 const ChloeNeuralApp = () => {
   const passageRef = useRef(null);
   const questionRef = useRef(null);
