@@ -75,7 +75,7 @@ const ChloeNeuralApp = () => {
                     Answers
                   </div>
 
-                  {answer ? answer.map((ans, idx) => <div className='text'><b>Answer {idx + 1} - </b>{ans.text} ({ans.score})</div>) : ""}
+                  {answer ? answer.map((ans, idx) => <div className='answer'><b>Answer {idx + 1} - </b>{ans.text} ({ans.score})</div>) : ""}
 
                 </div>
               </Fragment>
