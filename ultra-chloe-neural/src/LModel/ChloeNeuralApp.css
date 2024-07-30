@@ -1,0 +1,15 @@
+.text {
+    font-size: 1.5rem;
+  }
+  
+  .App-header textarea {
+    width: 68%;
+    height: 200px;
+    font-size: 1.2rem;
+  }
+  
+  .App-header input {
+    width: 68%;
+    height: 50px;
+    font-size: 1.2rem;
+  }

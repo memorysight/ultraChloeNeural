@@ -1,6 +1,8 @@
+
 import React, { useRef, useEffect, useState, Fragment } from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as qna from "@tensorflow-models/qna";
+import './ChloeNeuralApp.css';
 
 const ChloeNeuralApp = () => {
   const passageRef = useRef(null);
@@ -19,18 +21,16 @@ const ChloeNeuralApp = () => {
     }
   };
 
-
   useEffect(() => {
     loadModel()
   }, []);
 
- 
   const aQ = async (e) => {
     if (e.which === 13 && model !== null) {
       console.log('Question Submitted');// asked a question
       const passage = passageRef.current.value; // passage
       const question = questionRef.current.value; // question
-  
+
       try {
         const answers = await model.findAnswers(question, passage);
         setAnswer(answers);
@@ -43,56 +43,46 @@ const ChloeNeuralApp = () => {
   };
 
   return (
-
     <div>
-        <video autoPlay muted loop id="bg-video">
+      <video autoPlay muted loop id="bg-video">
         <source src="JenLips.mp4" type="video/mp4" />
-            {/* <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" /> */}
-        </video>
-          <div className="content">
-         
-      <div className="App">
-        <header className="App-header">
-          {model == null ?
-            <div>
-              <div>****L=ML***</div>
-              <div/>
-              <video autoPlay muted loop id="bg-video">
-            <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
-        </video>
-              
-            </div>
-            :
-            <Fragment>
+        {/* <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" /> */}
+      </video>
+
+      <div className="content">
+        <div className="App">
+          <header className="App-header">
+            {model == null ?
               <div>
-                <div className='text'>
-                  Make me into your perfect entity!
-                </div>
-                <textArea ref={passageRef} rows="30" cols="100"></textArea>
-                <div className='text'>
-                 Ask a question
-                </div>
-                <input ref={questionRef} onKeyDownCapture={aQ} size="80"></input>
-                <div className='text'>
-                  Answers
-                </div>
-                   
-               
-                {answer ? answer.map((ans, idx) => <div className='text'><b>Answer {idx + 1} - </b>{ans.text} ({ans.score})</div>) : ""}
-               
-               
-              
+                <div>****L=ML***</div>
+                <div/>
+                <video autoPlay muted loop id="bg-video">
+                  <source src="Hal9muchBetterFinal2.mp4" type="video/mp4" />
+                </video>
               </div>
-           
-            </Fragment>
+              :
+              <Fragment>
+                <div>
+                  <div className='text'>
+                    Make me into your perfect entity!
+                  </div>
+                  <textArea ref={passageRef} rows="30" cols="100"></textArea>
+                  <div className='text'>
+                    Ask a question
+                  </div>
+                  <input ref={questionRef} onKeyDownCapture={aQ} size="80"></input>
+                  <div className='text'>
+                    Answers
+                  </div>
 
+                  {answer ? answer.map((ans, idx) => <div className='text'><b>Answer {idx + 1} - </b>{ans.text} ({ans.score})</div>) : ""}
 
-          }
-            </header>
-
-
+                </div>
+              </Fragment>
+            }
+          </header>
+        </div>
       </div>
-    </div>
     </div>
   )
 }
