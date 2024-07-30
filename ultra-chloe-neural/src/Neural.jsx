@@ -147,7 +147,7 @@ const Neural = () => {
   return (
     <div className="app">
       <video autoPlay muted loop id="bg-video">
-        <source src="ZoeVeryAngryLooped.mp4" type="video/mp4" />
+        <source src="ZoeLipsStanding.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
