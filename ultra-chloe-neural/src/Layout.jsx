@@ -24,8 +24,8 @@ function Layout() {
             <li><a href="/neural"><AddCircleOutlineIcon /> Neural</a></li>
             <li><a href="/engine"><FavoriteIcon /> Engine</a></li>
             <li><a href="/instaApp"><ManageSearchIcon /> InstaApp</a></li>
+            <li><a href="/svguiapp"><MenuIcon /> SVGUIApp</a></li>
             
-
           </ul>
         </nav>
       </header>

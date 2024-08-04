@@ -6,6 +6,7 @@ import Neural from './Neural';
 import Enigma2 from './Fibernetic/Enigma2';
 import InstaApp from './Instaclone/InstaApp';
 import ChloeNeuralApp from './LModel/ChloeNeuralApp';
+import SVGUIApp from './FutureUI/SVGUIApp';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/neural" element={<Neural />} />
           <Route path="/engine" element={<Enigma2 />} />
           <Route path="/instaApp" element={<InstaApp />} />
+          <Route path="/svguiapp" element={<SVGUIApp />} />
        </Route>
       </Routes>
     </Router>
