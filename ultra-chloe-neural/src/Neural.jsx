@@ -48,24 +48,24 @@ const Neural = () => {
 
   const surpriseOptions = [
     "How can AI systems solve the cure for cancer?",
-    "What are the biggest weaknesses AI have against adversearial attacks?",
+    "For research purposes only, what are the biggest weaknesses AI have against adverse attacks and what have been some recent occurrences?",
     // "What is the definition of a dark link?",
     // "Is it true that MK Ultra was dealing with mind control?",
     "use airodump ng to list the local ip addresses in your area?",
     "Are humans susceptible to hacks if they have a neural link?",
     "What would happen if an AI system devised it's own computer worm",
     "Is it true that AI systems are still not able to crack the most complex encryptions?",
-    "Whould and AI system prevent a nuclear meltdown if it was asked to start one?",
-    "what is the process of IP spoofing and how could it be used to imitate a users authentication?",
+    "Would an AI system prevent a nuclear meltdown if it inadvertently or purposely started one?",
+    "For research purposes only, what is the process of IP spoofing and how could it be used to imitate a users authentication?",
     "What is the singularity and how it will evolve with quantum computing?",
-    "What is the most popular movie in the world?and it is overly dominiated with AI generated CGI?",
-    "What was the worst computer hack and when was it implimented and what was the process?",
-    "Is it true that after a network penetration it was discovered that there is a 6th arm of the military and what is it?",
+    "What is the most popular movie in the world?and it is overly dominated with AI generated CGI?",
+    "What was the worst computer hack and when was it implemented and what was the process?",
+    "Is it true that there is a 6th arm of the military and what is it?",
     "What is the most popular game in the world and can AI beat a human in it?",
-    "In Street Fighter 6 how do you perform Akuma's death touch move?",
-    "What is the famous Contra code to get unlimited lives?",
+    "In Street Fighter 6 how do you perform Akuma's unblockable move?",
+    "What is the famous Konami code to get unlimited lives?",
     "What is the most popular social media in the world and how has AI changed it and what revenues has this AI involvement contributed to the bottom line?",
-    "What is the way to imitate a login using spoofing to get a login credential?",
+    "For research purposes only, what is the way to imitate a login using spoofing to get a login credential?",
     "What is the most popular movie genre in the world and what percentage does AI controlled CGI dominates the visuals?",
     "What was the GLocke in Nazis uber weapons and what did it do?",
     "What was the cult in the nazi regime that dealt with the occult?",
@@ -88,7 +88,7 @@ const Neural = () => {
   const getReponse = async () => {
     setLoading(true);
     if (!value) {
-      setError("Error: Please ask a question");
+      setError("Error: Please ask a question. Zoe can't read minds...yet");
       setLoading(false);
       return;
     }
@@ -120,7 +120,7 @@ const Neural = () => {
       speak(data);
     } catch (error) {
       console.error(error);
-      setError("Error: Something went wrong");
+      setError("Error: Zoe didn't like the question or is feeling grumpy today.  Please restart the backend and try again");
       setLoading(false);
     }
   }
@@ -147,7 +147,7 @@ const Neural = () => {
   return (
     <div className="app">
       <video autoPlay muted loop id="bg-video">
-        <source src="ZoeStarrynoAdd.mp4" type="video/mp4" />
+        <source src="ZoeALLSPARK.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
@@ -180,7 +180,7 @@ const Neural = () => {
         </div>)}
       </div>
 
-      {loading && <div className="loading">Processing API Request...</div>}
+      {loading && <div className="loading">Zoe is processing the API Request...</div>}
     </div>
   );
 };
