@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import Voice from './SVG/Voice';
+import SVGAPP from './SVG/SVGAPP';
 
 const Neural = () => {
   const [value, setValue] = useState('');
@@ -146,8 +148,12 @@ const Neural = () => {
 
   return (
     <div className="app">
+
+   
+
+     
       <video autoPlay muted loop id="bg-video">
-        <source src="ZoeALLSPARK.mp4" type="video/mp4" />
+        <source src="Zoe5glitchy.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
@@ -162,6 +168,11 @@ const Neural = () => {
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown} />
+               
+     {/* <div>
+      <h1>Open</h1>
+      <Voice />
+    </div> */}
         {!error && <button onClick={getReponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
