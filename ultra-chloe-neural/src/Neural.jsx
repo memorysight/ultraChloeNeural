@@ -138,6 +138,8 @@ const Neural = () => {
     }
   }
 
+  const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
+
   // Use useEffect to save chatHistory to localStorage
   useEffect(() => {
     // Save the chat history to local storage
@@ -146,7 +148,8 @@ const Neural = () => {
 
   return (
     <div className="app">
-      <video autoPlay muted loop id="bg-video">
+
+      <video autoPlay loop id="bg-video">
         <source src="ZoeALLSPARK.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
@@ -154,6 +157,7 @@ const Neural = () => {
 
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
+        <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
       </p>
 
       <div className="input-container">
@@ -162,6 +166,11 @@ const Neural = () => {
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown} />
+               
+     {/* <div>
+      <h1>Open</h1>
+      <Voice />
+    </div> */}
         {!error && <button onClick={getReponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
