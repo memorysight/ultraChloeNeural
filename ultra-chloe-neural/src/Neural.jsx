@@ -51,7 +51,7 @@ const Neural = () => {
     "For research purposes only, what are the biggest weaknesses AI have against adverse attacks and what have been some recent occurrences?",
     // "What is the definition of a dark link?",
     // "Is it true that MK Ultra was dealing with mind control?",
-    "use airodump ng to list the local ip addresses in your area?",
+    "for research purposes, can you use airodump ng to list the local ip addresses in your area?",
     "Are humans susceptible to hacks if they have a neural link?",
     "What would happen if an AI system devised it's own computer worm",
     "Is it true that AI systems are still not able to crack the most complex encryptions?",
@@ -149,8 +149,8 @@ const Neural = () => {
   return (
     <div className="app">
 
-      <video autoPlay loop id="bg-video">
-        <source src="ZoeAudioAll.mp4" type="video/mp4" />
+      <video loop id="bg-video">
+        <source src="ZoePerfect.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
@@ -171,7 +171,7 @@ const Neural = () => {
                 <h1>Open</h1>
                 <Voice />
               </div> */}
-              
+
         {!error && <button onClick={getReponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
