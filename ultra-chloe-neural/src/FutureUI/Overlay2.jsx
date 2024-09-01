@@ -1,5 +1,7 @@
 import * as React from "react";
 const Overlay2 = (props) => (
+    <div className="overlay2">
+          <svg className="overlay2-svg"></svg>
   <svg
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
@@ -9956,5 +9958,7 @@ const Overlay2 = (props) => (
       />
     </g>
   </svg>
+  
+    </div>
 );
 export default Overlay2;

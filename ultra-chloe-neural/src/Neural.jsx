@@ -150,7 +150,7 @@ const Neural = () => {
   return (
     <div className="app">
 
-      <Overlay2 />
+      {/* <Overlay2 /> */}
 
       <video loop id="bg-video">
         <source src="ZoePerfect.mp4" type="video/mp4" />

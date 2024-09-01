@@ -250,6 +250,11 @@ a.active {
 
 } */
 
+.overlay2-svg {
+  width: 100%;
+  height: auto;
+}
+
 .game{
   width: 560px;
   height: 560px;
