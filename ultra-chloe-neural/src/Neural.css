@@ -250,17 +250,7 @@ a.active {
 
 } */
 
-.game{
-  width: 560px;
-  height: 560px;
-  display: flex;
-  flex-wrap: wrap;
-}
 
-.game img {
-  width: 70px;
-  height: 70px;
-}
 
 .engine{
   width: 120vh;

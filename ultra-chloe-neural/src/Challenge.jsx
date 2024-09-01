@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Scoreboard from "./Scoreboard";
+import './Challenge.css';
 
 const width = 8;
 const candyColors = [

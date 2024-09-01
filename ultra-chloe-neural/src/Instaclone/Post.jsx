@@ -34,7 +34,7 @@ function Post({ user, postImage, likes, timestamp }) {
             <BookmarkBorderIcon className="postIcon" />
           </div>
         </div>
-        Liked by 21 people that sucks
+        Liked by 21 people 
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+import Overlay2 from './FutureUI/Overlay2'
 
 const Neural = () => {
   const [value, setValue] = useState('');
@@ -148,6 +149,8 @@ const Neural = () => {
 
   return (
     <div className="app">
+
+      <Overlay2 />
 
       <video loop id="bg-video">
         <source src="ZoePerfect.mp4" type="video/mp4" />
