@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
-import Overlay2 from './FutureUI/Overlay2'
+import Overlay2 from './FutureUI/Overlay2';
+
 
 const Neural = () => {
   const [value, setValue] = useState('');
