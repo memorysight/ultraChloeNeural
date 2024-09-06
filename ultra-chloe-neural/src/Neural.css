@@ -26,13 +26,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  /* background-color: black; */
+  
+  /* background-image: url("https://i.ibb.co/brZMrQ5/Optical-Background.jpg");
+  background-size: cover;
+  background-repeat: repeat-x;
+  background-position: center; */
+
 }
-
-
-
-
-
 
 
 /* animation-name

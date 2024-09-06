@@ -5,6 +5,7 @@ import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 import Overlay2 from './FutureUI/Overlay2';
+import './Neural.css';
 
 
 const Neural = () => {
