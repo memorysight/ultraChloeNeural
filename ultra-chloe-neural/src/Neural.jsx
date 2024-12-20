@@ -7,7 +7,6 @@ import VoiceToText from './VoiceToText';
 import Overlay2 from './FutureUI/Overlay2';
 import './Neural.css';
 
-
 const Neural = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
