@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
@@ -7,26 +6,28 @@ import VoiceToText from './VoiceToText';
 import Overlay2 from './FutureUI/Overlay2';
 import './Neural.css';
 
-
 const Neural = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+  const [isResponding, setIsResponding] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const synth = window.speechSynthesis;
-  const video = document.getElementById('bg-video');
+
+  const aiResponseVideo = document.getElementById('ai-response-video');
+  const idleVideo = document.getElementById('idle-video');
 
   const commands = [
     {
       command: 'enter',
-      callback: () => { getReponse(); }
+      callback: () => { getResponse(); }
     }
   ];
 
   const handleResult = (result) => {
     if (result.startsWith('enter')) {
-      getReponse();
+      getResponse();
     }
   }
 
@@ -37,12 +38,15 @@ const Neural = () => {
 
     // Start the video playback when the utterance starts speaking
     utterance.onstart = () => {
-      video.play();
+      aiResponseVideo.play();
+      idleVideo.pause();
     };
 
     // Stop the video playback when the utterance stops speaking
     utterance.onend = () => {
-      video.pause();
+      aiResponseVideo.pause();
+      idleVideo.play();
+      setIsResponding(false);
     };
 
     // Speak the utterance
@@ -88,13 +92,17 @@ const Neural = () => {
     setValue(text);
   }
 
-  const getReponse = async () => {
+  const getResponse = async () => {
     setLoading(true);
+    setIsResponding(true);
+
     if (!value) {
       setError("Error: Please ask a question. Zoe can't read minds...yet");
       setLoading(false);
+      setIsResponding(false);
       return;
     }
+
     try {
       const options = {
         method: 'POST',
@@ -119,12 +127,14 @@ const Neural = () => {
       }
       ]);
       setLoading(false);
+     
       setValue("")
       speak(data);
     } catch (error) {
       console.error(error);
       setError("Error: Zoe didn't like the question or is feeling grumpy today.  Please restart the backend and try again");
       setLoading(false);
+      setIsResponding(false);
     }
   }
 
@@ -137,11 +147,13 @@ const Neural = () => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      getReponse();
+      getResponse();
     }
   }
 
   const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
+
+  const handleZoeAugReality = () => { window.location = 'http://localhost:3001'; };
 
   // Use useEffect to save chatHistory to localStorage
   useEffect(() => {
@@ -152,8 +164,10 @@ const Neural = () => {
   return (
     <div className="app">
       {/* <Overlay2 /> */}
-
-      <video loop id="bg-video">
+      <video autoPlay loop id="idle-video" className="idle-video" style={{display:isResponding?"none":"block"}}>
+        <source src="HAL9000.mp4" type="video/mp4" />
+      </video>
+      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{display:isResponding?"block":"none"}}>
         <source src="HALGlitchy.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
@@ -162,6 +176,7 @@ const Neural = () => {
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
+        <button className="surprise" onClick={() => handleZoeAugReality()}>Real Zoe </button>
       </p>
 
       <div className="input-container">
@@ -170,19 +185,15 @@ const Neural = () => {
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown} />
-               
-              {/* <div>
-                <h1>Open</h1>
-                <Voice />
-              </div> */}
-
-        {!error && <button onClick={getReponse}>Enter</button>}
+        {/* <div>
+          <h1>Open</h1>
+          <Voice />
+        </div> */}
+        {!error && <button onClick={getResponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
-
       {error && <p>{error}</p>}
-
-      <div className="search-result">
+ <div className="search-result">
         {chatHistory.map((chatItem, _index) => <div key={_index}>
           <p className="answer">
             <span style={{ color: '#00ffa2', fontWeight: 600 }}>
@@ -193,7 +204,6 @@ const Neural = () => {
           </p>
         </div>)}
       </div>
-
       {loading && <div className="loading">Zoe is processing the API Request...</div>}
     </div>
   );
