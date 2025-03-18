@@ -164,10 +164,10 @@ const Neural = () => {
     <div className="app">
       {/* <Overlay2 /> */}
       <video autoPlay loop id="idle-video" className="idle-video" style={{display:isResponding?"none":"block"}}>
-        <source src="99.mp4" type="video/mp4" />
+        <source src="Ls8802.mp4" type="video/mp4" />
       </video>
       <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{display:isResponding?"block":"none"}}>
-        <source src="LS9901.mp4" type="video/mp4" />
+        <source src="LS8802Tec.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
@@ -209,3 +209,4 @@ const Neural = () => {
 };
 
 export default Neural;
+
