@@ -1,4 +1,4 @@
-const PORT = 8000
+const PORT = 9090
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -17,7 +17,7 @@ app.post('/gemini', async (req, res) => {
     console.log(req.body.history)
     console.log(req.body.message)
     
-    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
     const chat = model.startChat({
        
@@ -60,6 +60,8 @@ app.post('/gemini', async (req, res) => {
 // app.use(express.json())
 // // require( 'dotenv').config()
 
+
+
 // const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // // Access your API key as an environment variable (see "Set up your API key" above)
@@ -70,7 +72,7 @@ app.post('/gemini', async (req, res) => {
 
 // async function run() {
 //   // For text-only input, use the gemini-pro model
-//   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+//   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
 //   const chat = model.startChat({
 //     history: [

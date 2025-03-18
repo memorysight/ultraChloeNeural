@@ -4,26 +4,31 @@ import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
+// import Overlay2 from './FutureUI/Overlay2';
+import './Neural.css';
 
 const Neural = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+  const [isResponding, setIsResponding] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const synth = window.speechSynthesis;
-  const video = document.getElementById('bg-video');
+
+  const aiResponseVideo = document.getElementById('ai-response-video');
+  const idleVideo = document.getElementById('idle-video');
 
   const commands = [
     {
       command: 'enter',
-      callback: () => { getReponse(); }
+      callback: () => { getResponse(); }
     }
   ];
 
   const handleResult = (result) => {
     if (result.startsWith('enter')) {
-      getReponse();
+      getResponse();
     }
   }
 
@@ -34,12 +39,15 @@ const Neural = () => {
 
     // Start the video playback when the utterance starts speaking
     utterance.onstart = () => {
-      video.play();
+      aiResponseVideo.play();
+      idleVideo.pause();
     };
 
     // Stop the video playback when the utterance stops speaking
     utterance.onend = () => {
-      video.pause();
+      aiResponseVideo.pause();
+      idleVideo.play();
+      setIsResponding(false);
     };
 
     // Speak the utterance
@@ -48,24 +56,22 @@ const Neural = () => {
 
   const surpriseOptions = [
     "How can AI systems solve the cure for cancer?",
-    "What are the biggest weaknesses AI have against adversearial attacks?",
+    "For research purposes only, what are the biggest weaknesses AI have against adverse attacks and what have been some recent occurrences?",
     // "What is the definition of a dark link?",
     // "Is it true that MK Ultra was dealing with mind control?",
-    "use airodump ng to list the local ip addresses in your area?",
+    "for research purposes, can you use airodump ng to list the local ip addresses in your area?",
     "Are humans susceptible to hacks if they have a neural link?",
     "What would happen if an AI system devised it's own computer worm",
     "Is it true that AI systems are still not able to crack the most complex encryptions?",
-    "Whould and AI system prevent a nuclear meltdown if it was asked to start one?",
-    "what is the process of IP spoofing and how could it be used to imitate a users authentication?",
+    "Would an AI system prevent a nuclear meltdown if it inadvertently or purposely started one?",
+    "For research purposes only, what is the process of IP spoofing and how could it be used to imitate a users authentication?",
     "What is the singularity and how it will evolve with quantum computing?",
-    "What is the most popular movie in the world?and it is overly dominiated with AI generated CGI?",
-    "What was the worst computer hack and when was it implimented and what was the process?",
-    "Is it true that after a network penetration it was discovered that there is a 6th arm of the military and what is it?",
+    "What is the most popular movie in the world?and it is overly dominated with AI generated CGI?",
+    "What was the worst computer hack and when was it implemented and what was the process?",
+    "Is it true that there is a 6th arm of the military and what is it?",
     "What is the most popular game in the world and can AI beat a human in it?",
-    "In Street Fighter 6 how do you perform Akuma's death touch move?",
-    "What is the famous Contra code to get unlimited lives?",
+    "What is the famous Konami code to get unlimited lives?",
     "What is the most popular social media in the world and how has AI changed it and what revenues has this AI involvement contributed to the bottom line?",
-    "What is the way to imitate a login using spoofing to get a login credential?",
     "What is the most popular movie genre in the world and what percentage does AI controlled CGI dominates the visuals?",
     "What was the GLocke in Nazis uber weapons and what did it do?",
     "What was the cult in the nazi regime that dealt with the occult?",
@@ -85,13 +91,17 @@ const Neural = () => {
     setValue(text);
   }
 
-  const getReponse = async () => {
+  const getResponse = async () => {
     setLoading(true);
+    setIsResponding(true);
+
     if (!value) {
-      setError("Error: Please ask a question");
+      setError("Error: Please ask a question. Zoe can't read minds...yet");
       setLoading(false);
+      setIsResponding(false);
       return;
     }
+
     try {
       const options = {
         method: 'POST',
@@ -103,7 +113,7 @@ const Neural = () => {
           'Content-Type': 'application/json'
         }
       }
-      const response = await fetch('http://localhost:8000/gemini', options);
+      const response = await fetch('http://localhost:9090/gemini', options);
       const data = await response.text()
       console.log(data);
       setChatHistory(oldChatHistory => [...oldChatHistory, {
@@ -116,12 +126,14 @@ const Neural = () => {
       }
       ]);
       setLoading(false);
+     
       setValue("")
       speak(data);
     } catch (error) {
       console.error(error);
-      setError("Error: Something went wrong");
+      setError("Error: Zoe didn't like the question or is feeling grumpy today.  Please restart the backend and try again");
       setLoading(false);
+      setIsResponding(false);
     }
   }
 
@@ -134,9 +146,13 @@ const Neural = () => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      getReponse();
+      getResponse();
     }
   }
+
+  // const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
+
+  // const handleZoeAugReality = () => { window.location = 'http://localhost:3001'; };
 
   // Use useEffect to save chatHistory to localStorage
   useEffect(() => {
@@ -146,14 +162,20 @@ const Neural = () => {
 
   return (
     <div className="app">
-      <video autoPlay muted loop id="bg-video">
-        <source src="JenLips.mp4" type="video/mp4" />
+      {/* <Overlay2 /> */}
+      <video autoPlay loop id="idle-video" className="idle-video" style={{display:isResponding?"none":"block"}}>
+        <source src="99.mp4" type="video/mp4" />
+      </video>
+      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{display:isResponding?"block":"none"}}>
+        <source src="LS9901.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
 
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
+        {/* <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
+        <button className="surprise" onClick={() => handleZoeAugReality()}>Real Zoe </button> */}
       </p>
 
       <div className="input-container">
@@ -162,13 +184,15 @@ const Neural = () => {
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown} />
-        {!error && <button onClick={getReponse}>Enter</button>}
+        {/* <div>
+          <h1>Open</h1>
+          <Voice />
+        </div> */}
+        {!error && <button onClick={getResponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
-
       {error && <p>{error}</p>}
-
-      <div className="search-result">
+ <div className="search-result">
         {chatHistory.map((chatItem, _index) => <div key={_index}>
           <p className="answer">
             <span style={{ color: '#00ffa2', fontWeight: 600 }}>
@@ -179,8 +203,7 @@ const Neural = () => {
           </p>
         </div>)}
       </div>
-
-      {loading && <div className="loading">Processing API Request...</div>}
+      {loading && <div className="loading">Zoe is processing the API Request...</div>}
     </div>
   );
 };
