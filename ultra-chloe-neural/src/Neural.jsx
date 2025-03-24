@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
@@ -6,18 +6,18 @@ import VoiceToText from './VoiceToText';
 // import Overlay2 from './FutureUI/Overlay2';
 import './Neural.css';
 
+
 const Neural = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [isResponding, setIsResponding] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [currentVideoPair, setCurrentVideoPair] = useState(null); // Track current video pair
-  const [isLoadingVideos, setIsLoadingVideos] = useState(true);
-  
-  const synth = window.speechSynthesis;
-  const aiResponseVideoRef = useRef(null);
-  const idleVideoRef = useRef(null);
+  const [elevenLabsError, setElevenLabsError] = useState(null); //New state for ElevenLabs errors
+
+
+  const aiResponseVideo = document.getElementById('ai-response-video');
+  const idleVideo = document.getElementById('idle-video');
 
   const videoPairs = [
     { idle: '88Tec.mp4', response: 'Ls8802Tec.mp4' },
@@ -25,7 +25,9 @@ const Neural = () => {
     { idle: '88red.mp4', response: '8801LOOPED.mp4' }
   ];
 
-  const commands = [
+  // ... (commands, handleResult, surpriseOptions, surprise, utterQuestion remain the same)
+
+const commands = [
     {
       command: 'enter',
       callback: () => { getResponse(); }
@@ -36,31 +38,9 @@ const Neural = () => {
     if (result.startsWith('enter')) {
       getResponse();
     }
-  };
+  }
 
-  const speak = (text) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voices = speechSynthesis.getVoices();
-    // More robust voice selection - check for availability
-    const femaleVoice = voices.find(voice => voice.gender === 'female');
-    utterance.voice = femaleVoice || voices[0]; // Fallback to default voice
-    utterance.rate = 1.3;
-
-    utterance.onstart = () => {
-      aiResponseVideoRef.current.play();
-      idleVideoRef.current.pause();
-    };
-
-    utterance.onend = () => {
-      aiResponseVideoRef.current.pause();
-      idleVideoRef.current.play();
-      setIsResponding(false);
-    };
-
-    synth.speak(utterance);
-  };
-
-  const surpriseOptions = [
+const surpriseOptions = [
     "How can AI systems solve the cure for cancer?",
     "For research purposes only, what are the biggest weaknesses AI have against adverse attacks and what have been some recent occurrences?",
     // "What is the definition of a dark link?",
@@ -97,12 +77,67 @@ const Neural = () => {
     setValue(text);
   }
 
+
+  const speak = async (text) => {
+    setIsResponding(true);
+    setLoading(true); //Added loading indicator
+    setElevenLabsError(null); //Clear previous errors
+
+    try {
+      const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'xi-api-key': 'sk_b4d710eea0dd96b3b633613149adefc068cf4b7093c2fd94',
+        },
+        body: JSON.stringify({
+          text: text,
+          model_id: "eleven_turbo_v2",
+          voice_settings: {
+            stability: 0.5,
+            similarity_boost: 0.5,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json(); //Try to get more details from the error
+        const errorMessage = errorData.error || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      const blob = await response.blob();
+      const audioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(audioUrl);
+
+      audio.play();
+      audio.onplay = () => {
+        aiResponseVideo.play();
+        idleVideo.pause();
+      };
+      audio.onended = () => {
+        aiResponseVideo.pause();
+        idleVideo.play();
+        setIsResponding(false);
+        setLoading(false); //Loading indicator off
+      };
+
+    } catch (error) {
+      console.error("Error speaking with ElevenLabs:", error);
+      setElevenLabsError(error.message); //Set the error message
+      setIsResponding(false);
+      setLoading(false); //Loading indicator off
+    }
+  };
+
+
   const getResponse = async () => {
     setLoading(true);
     setIsResponding(true);
+    setError(''); // Clear previous errors
 
     if (!value) {
-      setError("Error: Please ask a question.");
+      setError("Please ask a question.");
       setLoading(false);
       setIsResponding(false);
       return;
@@ -114,34 +149,28 @@ const Neural = () => {
         body: JSON.stringify({ history: chatHistory, message: value }),
         headers: { 'Content-Type': 'application/json' }
       };
-
       const response = await fetch('http://localhost:9090/gemini', options);
       const data = await response.text();
-      console.log(data);
 
-      setChatHistory((oldChatHistory) => [
-        ...oldChatHistory,
+      setChatHistory(oldChatHistory => [...oldChatHistory,
         { role: "user", parts: [{ text: value }] },
         { role: "model", parts: [{ text: data }] }
       ]);
-
-      // Randomly select video pair
-      const randomIndex = Math.floor(Math.random() * videoPairs.length);
-      setCurrentVideoPair(videoPairs[randomIndex]);
-
-      setLoading(false);
-      setValue('');
-      speak(data);
+      setValue("");
+      speak(data); // Use the new speak function
     } catch (error) {
       console.error(error);
-      setError("Error: An error occurred. Please try again later.");
+      setError("Error getting response. Please try again.");
       setLoading(false);
       setIsResponding(false);
+    } finally {
+      setLoading(false);
     }
   };
 
+  // ... (clear, handleKeyDown, handleNewItem remain the same)
 
-  const clear = () => {
+const clear = () => {
     setValue("");
     setError("");
     setChatHistory([]);
@@ -156,58 +185,42 @@ const Neural = () => {
 
   const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
 
-  // const handleZoeAugReality = () => { window.location = 'http://localhost:3001'; };
-
-  // Use useEffect to save chatHistory to localStorage
-
- 
 
 
-  
   useEffect(() => {
     localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
   }, [chatHistory]);
 
-  useEffect(() => {
-    // Set video sources when currentVideoPair changes.  Provide default sources
-    if (currentVideoPair) {
-      idleVideoRef.current.src = currentVideoPair.idle;
-      aiResponseVideoRef.current.src = currentVideoPair.response;
-    } else {
-      // Set default videos if no pair is selected yet.  Replace with your default videos.
-      idleVideoRef.current.src = '99.mp4';  // Replace with actual default video
-      aiResponseVideoRef.current.src = 'LS9901.mp4'; // Replace with actual default video
-    }
-  }, [currentVideoPair]);
-
   return (
     <div className="app">
-      {/* <Overlay2 /> */}
-      <video ref={idleVideoRef}  loop className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
-        <source type="video/mp4" />
+      <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
+        <source src="99.mp4" type="video/mp4" />
       </video>
-      <video ref={aiResponseVideoRef} loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{ display: isResponding ? "block" : "none" }}>
-        <source type="video/mp4" />
+      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{ display: isResponding ? "block" : "none" }}>
+        <source src="LS9901.mp4" type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
 
-      <p>
-        Please ask a question:
+      <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
-        <button className="surprise" onClick={handleNewItem}>Analyze</button>
+        <button className="surprise" onClick={() => handleNewItem()}>Analyze</button>
       </p>
+
       <div className="input-container">
         <input
           value={value}
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
+          onKeyDown={handleKeyDown} />
         {!error && <button onClick={getResponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
+
       {error && <p>{error}</p>}
+      {elevenLabsError && <p style={{ color: 'red' }}>ElevenLabs Error: {elevenLabsError}</p>} {/* Display ElevenLabs errors */}
+      {loading && <div className="loading">Zoe is processing the API Request...</div>}
+
       <div className="search-result">
         {chatHistory.map((chatItem, index) => (
           <div key={index}>
@@ -220,8 +233,9 @@ const Neural = () => {
           </div>
         ))}
       </div>
-      {loading && <div className="loading">Zoe is processing the API Request...</div>}
     </div>
   );
 };
+
+
 export default Neural;
