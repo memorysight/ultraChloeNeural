@@ -16,6 +16,15 @@ const Neural = () => {
 
   const synth = window.speechSynthesis;
 
+  
+  const videoPairs = [
+    { idle: '88Tec.mp4', response: '8801Looped.mp4' },
+    { idle: '99.mp4', response: 'Ls9901.mp4' },
+   
+    // Add more pairs as needed.  Consider a default pair as a fallback
+    {idle: 'Ls8802.mp4', response: '88red.mp4'}
+  ];
+
   const aiResponseVideo = document.getElementById('ai-response-video');
   const idleVideo = document.getElementById('idle-video');
 
@@ -150,7 +159,7 @@ const Neural = () => {
     }
   }
 
-  // const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
+  const handleNewItem = () => { window.location = 'http://localhost:8080/posts/new'; };
 
   // const handleZoeAugReality = () => { window.location = 'http://localhost:3001'; };
 
@@ -174,8 +183,8 @@ const Neural = () => {
 
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
-        {/* <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
-        <button className="surprise" onClick={() => handleZoeAugReality()}>Real Zoe </button> */}
+        <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
+        {/* <button className="surprise" onClick={() => handleZoeAugReality()}>Real Zoe </button> */}
       </p>
 
       <div className="input-container">
