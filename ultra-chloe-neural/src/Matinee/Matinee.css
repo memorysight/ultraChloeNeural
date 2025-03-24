@@ -1,0 +1,50 @@
+.matinee-container {
+    width: 800px; /* Adjust width as needed */
+    overflow: hidden;
+    position: relative; /* For absolute positioning of thumbnails */
+  }
+  
+  .matinee-tiles {
+    display: flex;
+    animation: scroll 5s linear infinite; /* Adjust animation duration */
+  }
+  
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% * 6)); } /* Adjust for number of tiles */
+  }
+  
+  .matinee-tile {
+    width: 133.33px; /* 100%/6 */
+    height: 200px; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white; /* Text color */
+  }
+  
+  .matinee-tile-text {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  }
+  
+  .matinee-thumbnails {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .matinee-thumbnail {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .matinee-thumbnail.active {
+    border: 2px solid #007bff; /* Highlight active thumbnail */
+  }

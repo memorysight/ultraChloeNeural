@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
@@ -13,20 +12,18 @@ const Neural = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [isResponding, setIsResponding] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const synth = window.speechSynthesis;
-
+  const [currentVideoPair, setCurrentVideoPair] = useState(null); // Track current video pair
+  const [isLoadingVideos, setIsLoadingVideos] = useState(true);
   
-  const videoPairs = [
-    { idle: '88Tec.mp4', response: '8801Looped.mp4' },
-    { idle: '99.mp4', response: 'Ls9901.mp4' },
-   
-    // Add more pairs as needed.  Consider a default pair as a fallback
-    {idle: 'Ls8802.mp4', response: '88red.mp4'}
-  ];
+  const synth = window.speechSynthesis;
+  const aiResponseVideoRef = useRef(null);
+  const idleVideoRef = useRef(null);
 
-  const aiResponseVideo = document.getElementById('ai-response-video');
-  const idleVideo = document.getElementById('idle-video');
+  const videoPairs = [
+    { idle: '88Tec.mp4', response: 'Ls8802Tec.mp4' },
+    { idle: '99.mp4', response: 'Ls9901.mp4' },
+    { idle: '88red.mp4', response: '8801LOOPED.mp4' }
+  ];
 
   const commands = [
     {
@@ -39,28 +36,28 @@ const Neural = () => {
     if (result.startsWith('enter')) {
       getResponse();
     }
-  }
+  };
 
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = speechSynthesis.getVoices().filter(voice => voice.gender === "female")[2];
+    const voices = speechSynthesis.getVoices();
+    // More robust voice selection - check for availability
+    const femaleVoice = voices.find(voice => voice.gender === 'female');
+    utterance.voice = femaleVoice || voices[0]; // Fallback to default voice
     utterance.rate = 1.3;
 
-    // Start the video playback when the utterance starts speaking
     utterance.onstart = () => {
-      aiResponseVideo.play();
-      idleVideo.pause();
+      aiResponseVideoRef.current.play();
+      idleVideoRef.current.pause();
     };
 
-    // Stop the video playback when the utterance stops speaking
     utterance.onend = () => {
-      aiResponseVideo.pause();
-      idleVideo.play();
+      aiResponseVideoRef.current.pause();
+      idleVideoRef.current.play();
       setIsResponding(false);
     };
 
-    // Speak the utterance
-    speechSynthesis.speak(utterance);
+    synth.speak(utterance);
   };
 
   const surpriseOptions = [
@@ -105,7 +102,7 @@ const Neural = () => {
     setIsResponding(true);
 
     if (!value) {
-      setError("Error: Please ask a question. Zoe can't read minds...yet");
+      setError("Error: Please ask a question.");
       setLoading(false);
       setIsResponding(false);
       return;
@@ -114,37 +111,35 @@ const Neural = () => {
     try {
       const options = {
         method: 'POST',
-        body: JSON.stringify({
-          history: chatHistory,
-          message: value
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
+        body: JSON.stringify({ history: chatHistory, message: value }),
+        headers: { 'Content-Type': 'application/json' }
+      };
+
       const response = await fetch('http://localhost:9090/gemini', options);
-      const data = await response.text()
+      const data = await response.text();
       console.log(data);
-      setChatHistory(oldChatHistory => [...oldChatHistory, {
-        role: "user",
-        parts: [{ text: value }]
-      },
-      {
-        role: "model",
-        parts: [{ text: data }]
-      }
+
+      setChatHistory((oldChatHistory) => [
+        ...oldChatHistory,
+        { role: "user", parts: [{ text: value }] },
+        { role: "model", parts: [{ text: data }] }
       ]);
+
+      // Randomly select video pair
+      const randomIndex = Math.floor(Math.random() * videoPairs.length);
+      setCurrentVideoPair(videoPairs[randomIndex]);
+
       setLoading(false);
-     
-      setValue("")
+      setValue('');
       speak(data);
     } catch (error) {
       console.error(error);
-      setError("Error: Zoe didn't like the question or is feeling grumpy today.  Please restart the backend and try again");
+      setError("Error: An error occurred. Please try again later.");
       setLoading(false);
       setIsResponding(false);
     }
-  }
+  };
+
 
   const clear = () => {
     setValue("");
@@ -164,57 +159,69 @@ const Neural = () => {
   // const handleZoeAugReality = () => { window.location = 'http://localhost:3001'; };
 
   // Use useEffect to save chatHistory to localStorage
+
+ 
+
+
+  
   useEffect(() => {
-    // Save the chat history to local storage
     localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
   }, [chatHistory]);
+
+  useEffect(() => {
+    // Set video sources when currentVideoPair changes.  Provide default sources
+    if (currentVideoPair) {
+      idleVideoRef.current.src = currentVideoPair.idle;
+      aiResponseVideoRef.current.src = currentVideoPair.response;
+    } else {
+      // Set default videos if no pair is selected yet.  Replace with your default videos.
+      idleVideoRef.current.src = '99.mp4';  // Replace with actual default video
+      aiResponseVideoRef.current.src = 'LS9901.mp4'; // Replace with actual default video
+    }
+  }, [currentVideoPair]);
 
   return (
     <div className="app">
       {/* <Overlay2 /> */}
-      <video autoPlay loop id="idle-video" className="idle-video" style={{display:isResponding?"none":"block"}}>
-        <source src="Ls8802.mp4" type="video/mp4" />
+      <video ref={idleVideoRef}  loop className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
+        <source type="video/mp4" />
       </video>
-      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{display:isResponding?"block":"none"}}>
-        <source src="LS8802Tec.mp4" type="video/mp4" />
+      <video ref={aiResponseVideoRef} loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{ display: isResponding ? "block" : "none" }}>
+        <source type="video/mp4" />
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
 
-      <p>Please ask a question:
+      <p>
+        Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
-        <button className="surprise" onClick={() => handleNewItem()}>Analyze </button>
-        {/* <button className="surprise" onClick={() => handleZoeAugReality()}>Real Zoe </button> */}
+        <button className="surprise" onClick={handleNewItem}>Analyze</button>
       </p>
-
       <div className="input-container">
         <input
           value={value}
           placeholder="Type your question here"
           onChange={(e) => setValue(e.target.value)}
-          onKeyDown={handleKeyDown} />
-        {/* <div>
-          <h1>Open</h1>
-          <Voice />
-        </div> */}
+          onKeyDown={handleKeyDown}
+        />
         {!error && <button onClick={getResponse}>Enter</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
       {error && <p>{error}</p>}
- <div className="search-result">
-        {chatHistory.map((chatItem, _index) => <div key={_index}>
-          <p className="answer">
-            <span style={{ color: '#00ffa2', fontWeight: 600 }}>
-              {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
-            </span>
-            {/* Render markdown content here */}
-            <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
-          </p>
-        </div>)}
+      <div className="search-result">
+        {chatHistory.map((chatItem, index) => (
+          <div key={index}>
+            <p className="answer">
+              <span style={{ color: '#00ffa2', fontWeight: 600 }}>
+                {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)}:
+              </span>
+              <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
+            </p>
+          </div>
+        ))}
       </div>
       {loading && <div className="loading">Zoe is processing the API Request...</div>}
     </div>
   );
 };
-
 export default Neural;
