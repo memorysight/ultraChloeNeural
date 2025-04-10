@@ -3,9 +3,9 @@ import Matinee from './Matinee';
 
 const AvatarSelection = () => {
   const [avatars, setAvatars] = useState([
-    { image: 'ultra-chloe-neural\public\matinee\android1.JPG', name: 'Avatar 1' },
-    { image: 'ultra-chloe-neural\public\matinee\CEleneTile1.jpg', name: 'Avatar 2' },
-    { image: 'ultra-chloe-neural\public\matinee\woman1.JPG', name: 'Avatar 3' },
+    { image: '/Moaithumbnail.PNG', name: 'Avatar 1', name: 'Avatar 1' },
+    { image: '/ZoeThumbnail.PNG', name: 'Avatar 2' },
+    { image: '/android1.JPG', name: 'Avatar 3' },
    
   ]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
