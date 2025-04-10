@@ -1,2 +1,4 @@
 99.mp4 filter=lfs diff=lfs merge=lfs -text
 LS9901.mp4 filter=lfs diff=lfs merge=lfs -text
+MoaiSquareSpeaking.mp4 filter=lfs diff=lfs merge=lfs -text
+PreferredMoaiQuiet.mp4 filter=lfs diff=lfs merge=lfs -text
