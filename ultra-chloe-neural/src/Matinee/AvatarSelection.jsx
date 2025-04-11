@@ -4,9 +4,9 @@ import Matinee from './Matinee';
 
 const AvatarSelection = () => {
     const [avatars, setAvatars] = useState([
-      { image: '/ZoeThumbnail.PNG', name: 'Avatar 1', id: 1 }, // Added id
-      { image: '/Moaithumbnail.PNG', name: 'Avatar 2', id: 2 }, // Added id
-      { image: '/android1.JPG', name: 'Avatar 3', id: 3 }, // Added id
+      { image: '/ZoeThumbnail.PNG', name: 'Avatar 1', id: 1,url:"/neural" }, // Added id
+      { image: '/Moaithumbnail.PNG', name: 'Avatar 2', id: 2,url:"/neural2" }, // Added id
+      { image: '/android1.JPG', name: 'Avatar 3', id: 3, url:"/neural3" }, // Added id
     ]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
@@ -14,7 +14,7 @@ const AvatarSelection = () => {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
-    navigate(`/neural2`);   //this has to be dynamic
+    navigate(avatar.url);   //this has to be dynamic
   };
 
   return (

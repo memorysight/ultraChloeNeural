@@ -198,17 +198,10 @@ const clear = () => {
 
   return (
     <div className="app">
-
-      <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
-        <source src="PreferredMoaiQuiet.mp4" type="video/mp4" />
-      </video>
-      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{ display: isResponding ? "block" : "none" }}>
-        <source src="MoaiSquareSpeaking.mp4" type="video/mp4" />
-      </video>
-      <Dictaphone utterQuestion={utterQuestion} />
-      <VoiceToText />
-
-      <p>Please ask a question:
+        <Dictaphone utterQuestion={utterQuestion} />
+        <VoiceToText />
+        <div>
+        <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         <button className="surprise" onClick={() => handleNewItem()}>Analyze</button>
       </p>
@@ -227,6 +220,17 @@ const clear = () => {
       {elevenLabsError && <p style={{ color: 'red' }}>ElevenLabs Error: {elevenLabsError}</p>} {/* Display ElevenLabs errors */}
       {loading && <div className="loading">Zoe is processing the API Request...</div>}
 
+        </div>
+        <div className='chat-video-container'>
+            <div className='videos'>
+            <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
+        <source src="PreferredMoaiQuiet.mp4" type="video/mp4" />
+      </video>
+      <video id="ai-response-video" loop className={"ai-response-video " + (isResponding ? 'active' : '')} style={{ display: isResponding ? "block" : "none" }}>
+        <source src="MoaiSquareSpeaking.mp4" type="video/mp4" />
+      </video>
+            </div>
+        
       <div className="search-result">
         {chatHistory.map((chatItem, index) => (
           <div key={index}>
@@ -239,6 +243,12 @@ const clear = () => {
           </div>
         ))}
       </div>
+        </div>
+      
+      
+
+     
+      
     </div>
   );
 };

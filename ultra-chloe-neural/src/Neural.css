@@ -90,7 +90,7 @@ p {
 
 
 
-.search-result {
+.search-result1 {
   margin-top: 20px;
   overflow: auto;
 }
@@ -172,7 +172,7 @@ button:active {
   background-color: #cacaca;
 }
 
-.answer {
+.answer1 {
   padding: 13px 14px;
   background-color: #1e2122;
   margin: 5px;

@@ -174,7 +174,7 @@ button:active {
 
 .answer {
   padding: 13px 14px;
-  background-color: #1e2122;
+  background-color: #1e212276;
   margin: 5px;
   font-size: 18px;
   font-weight: 200;
@@ -283,4 +283,39 @@ a.active {
   touch-action: none;
 }
 
+.chat-video-container{
+    position: relative;
+}
 
+.videos{
+    position:absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.videos video{
+    background: transparent;
+}
+
+.search-result{
+    position:absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+}
+
+.search-result > div:nth-child(odd){
+    float:left;
+    clear: both;
+
+}
+
+.search-result > div:nth-child(even){
+    float:right;
+    clear: both;
+    
+    }

@@ -221,10 +221,10 @@ const clear = () => {
       {elevenLabsError && <p style={{ color: 'red' }}>ElevenLabs Error: {elevenLabsError}</p>} {/* Display ElevenLabs errors */}
       {loading && <div className="loading">Zoe is processing the API Request...</div>}
 
-      <div className="search-result">
+      <div className="search-result1">
         {chatHistory.map((chatItem, index) => (
           <div key={index}>
-            <p className="answer">
+            <p className="answer1">
               <span style={{ color: '#00ffa2', fontWeight: 600 }}>
                 {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)}:
               </span>
