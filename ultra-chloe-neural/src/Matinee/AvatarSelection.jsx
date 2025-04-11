@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Matinee from './Matinee';
 
 const AvatarSelection = () => {
-  const [avatars, setAvatars] = useState([
-    { image: '/Moaithumbnail.PNG', name: 'Avatar 1', name: 'Avatar 1' },
-    { image: '/ZoeThumbnail.PNG', name: 'Avatar 2' },
-    { image: '/android1.JPG', name: 'Avatar 3' },
-   
-  ]);
+    const [avatars, setAvatars] = useState([
+      { image: '/ZoeThumbnail.PNG', name: 'Avatar 1', id: 1 }, // Added id
+      { image: '/Moaithumbnail.PNG', name: 'Avatar 2', id: 2 }, // Added id
+      { image: '/android1.JPG', name: 'Avatar 3', id: 3 }, // Added id
+    ]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
-    //Do something with selectedAvatar, such as storing in local storage, sending to backend, etc.
-    console.log('Selected avatar:', avatar);
+    navigate(`/neural2`);   //this has to be dynamic
   };
 
   return (

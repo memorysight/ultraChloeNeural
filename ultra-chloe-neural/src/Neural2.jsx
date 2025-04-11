@@ -5,9 +5,14 @@ import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 // import Overlay2 from './FutureUI/Overlay2';
 import './Neural2.css';
+import { useParams } from 'react-router-dom';
 
 
 const Neural2 = () => {
+
+  const { avatarId } = useParams();
+
+
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
@@ -193,6 +198,7 @@ const clear = () => {
 
   return (
     <div className="app">
+
       <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
         <source src="PreferredMoaiQuiet.mp4" type="video/mp4" />
       </video>
