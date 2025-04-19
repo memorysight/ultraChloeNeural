@@ -241,5 +241,3 @@ const clear = () => {
 
 export default Neural;
 
-
-
