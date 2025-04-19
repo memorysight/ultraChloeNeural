@@ -22,6 +22,7 @@ function Layout() {
             <li><a href="/phoebe"><ExploreIcon /> Phoebe</a></li>
             <li><a href="/neural"><AddCircleOutlineIcon /> Neural</a></li>
             <li><a href="/neural2"><AddCircleOutlineIcon /> Neural2</a></li>
+            <li><a href="/neural3"><AddCircleOutlineIcon /> Neural3</a></li>
             <li><a href="/engine"><FavoriteIcon /> Engine</a></li>
             <li><a href="/instaApp"><ManageSearchIcon /> InstaApp</a></li>
             <li><a href="/avatars"><SlideshowIcon /> Select Avatar</a></li> {/* Added avatar selection link */}

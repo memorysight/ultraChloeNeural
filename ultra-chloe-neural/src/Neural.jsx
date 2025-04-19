@@ -88,7 +88,8 @@ const surpriseOptions = [
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'xi-api-key': 'sk_b4d710eea0dd96b3b633613149adefc068cf4b7093c2fd94',
+          // 'xi-api-key': 'sk_b4d710eea0dd96b3b633613149adefc068cf4b7093c2fd94',
+          'xi-api-key': 'sk_a716b2f3e4019bb64e870bb924f8ef493d36f9567220484a',
         },
         body: JSON.stringify({
           text: text,

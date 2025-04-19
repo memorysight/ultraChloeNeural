@@ -4,6 +4,7 @@ import Layout from './Layout';
 import Challenge from './Challenge';
 import Neural from './Neural';
 import Neural2 from './Neural2';
+import Neural3 from './Neural3';
 import Enigma2 from './Fibernetic/Enigma2';
 import InstaApp from './Instaclone/InstaApp';
 import Matinee from './Matinee/Matinee'; // Import Matinee component
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Challenge />} />
           <Route path="/neural" element={<Neural />} />
           <Route path="/neural2" element={<Neural2 />} />
+          <Route path="/neural3" element={<Neural3 />} />
           <Route path="/engine" element={<Enigma2 />} />
           <Route path="/instaApp" element={<InstaApp />} />
           <Route path="/avatars" element={<AvatarSelection />} /> {/* Add Matinee route */}
@@ -28,3 +30,4 @@ function App() {
 }
 
 export default App;
+
