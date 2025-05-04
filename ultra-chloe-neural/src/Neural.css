@@ -284,3 +284,21 @@ a.active {
 }
 
 
+/* Styles for the SpeechControlGen component */
+.speech-control {
+  cursor: pointer;
+  width: 150px; /* Adjust as needed */
+  height: 150px;
+  border-radius: 50%; /* For a circular button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.speech-control svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+

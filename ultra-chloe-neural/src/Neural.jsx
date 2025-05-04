@@ -5,6 +5,8 @@ import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
 // import Overlay2 from './FutureUI/Overlay2';
 import './Neural.css';
+import SpeechControl from './SVGMic/SpeechControl';
+import SpeechControlGen from "./SVGMic/SpeechControlGen";
 
 
 const Neural = () => {
@@ -193,6 +195,7 @@ const clear = () => {
 
   return (
     <div className="app">
+        <SpeechControl />
       <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
         <source src="99.mp4" type="video/mp4" />
       </video>
@@ -201,6 +204,8 @@ const clear = () => {
       </video>
       <Dictaphone utterQuestion={utterQuestion} />
       <VoiceToText />
+
+
 
       <p>Please ask a question:
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
