@@ -49,7 +49,7 @@ export function RoboticHead(){
     return(
 
        
-        <primitive object={gltf.scene}/>
+        <primitive object={gltf.scene} scale={[7, 7, 7]}/>
 
        
     )

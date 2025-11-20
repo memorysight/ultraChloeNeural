@@ -272,7 +272,22 @@ a.active {
 /*  min-height: 95vh;*/
 
 
-/*}*/
+.engine {
+  position: relative;
+  width: 40vw;      /* 40% of screen width */
+  height: 100vh;    /* full height of screen */
+  overflow: hidden;
+}
+.engine canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+
+
+
+
 
 
 .main {
