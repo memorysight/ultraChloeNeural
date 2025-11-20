@@ -9,7 +9,7 @@ app.use(express.json())
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI('AIzaSyDKUIoWlpmTSWlFnDyJS_zJmcMgXbZg2Og');
+const genAI = new GoogleGenerativeAI('AIzaSyD9daTSSndr116w9WaxbV4_MCgB5jFR7LI');
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`))
 
@@ -17,7 +17,7 @@ app.post('/gemini', async (req, res) => {
     console.log(req.body.history)
     console.log(req.body.message)
     
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash"});
 
     const chat = model.startChat({
        

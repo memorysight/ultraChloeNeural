@@ -195,7 +195,7 @@ const clear = () => {
 
   return (
     <div className="app">
-        {/*<SpeechControl />*/}
+        <SpeechControl />
       <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
         <source src="99.mp4" type="video/mp4" />
       </video>
