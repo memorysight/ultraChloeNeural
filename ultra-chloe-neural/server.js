@@ -10,7 +10,6 @@ app.use(express.json())
 console.log("Loaded AWS KEY:", process.env.AWS_ACCESS_KEY_ID);
 console.log("Loaded AWS SECRET:", process.env.AWS_SECRET_ACCESS_KEY ? "OK" : "MISSING");
 
-
 const { PollyClient, SynthesizeSpeechCommand } = require("@aws-sdk/client-polly");
 
 
