@@ -39,7 +39,6 @@ app.post('/gemini', async (req, res) => {
     res.send(text)
 })
 
-
 const polly = new PollyClient({
     region: "us-east-1",
     credentials: {
