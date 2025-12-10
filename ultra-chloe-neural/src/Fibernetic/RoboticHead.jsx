@@ -44,6 +44,15 @@ export function RoboticHead(){
         mesh.material.color = new Color(0.04, 0.06, 0.1);
     }, [gltf]);
 
+    useEffect(() => {
+        console.log("=== BONES IN MODEL ===");
+        gltf.scene.traverse((obj) => {
+            if (obj.isBone) {
+                console.log(obj.name);
+            }
+        });
+    }, [gltf]);
+
 
 
     return(
