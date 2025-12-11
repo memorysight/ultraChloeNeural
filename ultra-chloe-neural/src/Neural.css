@@ -8,12 +8,12 @@
 body {
   margin: 0;
   padding: 0;
-  width: 120vh;
-  height: 120vh;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
   background: linear-gradient(to right, #000000, #444444);
   color: #af3d4d;
-  display: flex;
-  justify-content: center;
+  /* no flex on body */
   /* -webkit-animation: bgcolor 465s linear 1s infinite alternate;
   animation: bgcolor 465s linear 1s infinite alternate; */
 }
@@ -73,26 +73,30 @@ animation-play-state */
 }
 
 p {
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: 400;
-  margin-left: 20px;
+  margin: 0 0 0.5rem 0;
 }
 
+/* main Neural container */
 .app {
-  width: 80vw;
-  height: 80vh;
-  margin: 10vw;
-  display: flex;
-  flex-direction: column;
-  margin-top: -10px;
-  min-height: 95vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  box-sizing: border-box;
+
+  /* no flex at all */
 }
 
 
 
+/* chat history area */
 .search-result1 {
-  margin-top: 20px;
-  overflow: auto;
+  margin-top: 0.5rem;
+  max-height: 40vh;     /* chat area height */
+  overflow-y: auto;
+  padding-right: 4px;       /* tiny space so scrollbar doesn’t sit on text */
 }
 
 
@@ -118,8 +122,11 @@ p {
 
 .input-container {
   display: flex;
-  width: 80%;
-  margin-left: 20px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 900px;
+  margin: 0.5rem 0;
+
   min-height: 2.5rem;
   background-color: #1e2122;
   border: solid 0.5px #cacaca;
@@ -130,12 +137,12 @@ p {
 }
 
 .input-container input {
-  width: 90%;
+  flex: 1;
   padding: 13px 14px;
   border: none;
   outline: none;
   box-sizing: border-box;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 200;
   color: #4769a8;
 }
@@ -146,13 +153,14 @@ p {
 }
 
 .input-container button {
-  min-width: 10%;
+  padding: 0 1.25rem;
   background-color: #af3d4d;
   border: none;
   border-left: 1px solid #cacaca;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .input-container button:hover {
@@ -314,6 +322,57 @@ a.active {
   width: 100%;
   height: 100%;
 }
+
+.idle-video,
+.ai-response-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 50vh;     /* you can tweak 40 -> 35 if needed */
+  object-fit: cover;
+  display: block;
+}
+
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem 0.75rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .input-container {
+    flex-direction: column;
+    border-radius: 16px;
+  }
+
+  .input-container input {
+    width: 100%;
+    border-bottom: 1px solid #333;
+  }
+
+  .input-container button {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #cacaca;
+  }
+}
+
+
+/*speechControlCSS*/
+/*.control-wrapper {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  width: 100%;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
+
+/*.speech-control {*/
+/*  width: clamp(100px, 20vw, 180px);*/
+/*  height: auto;*/
+/*}*/
 
 
 
