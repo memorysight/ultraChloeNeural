@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Canvas } from '@react-three/fiber';
+import { SceneContainer } from './Fibernetic/SceneContainer';
 import SpeechRecognition from 'react-speech-recognition';
 import Dictaphone from './Dictaphone';
 import VoiceToText from './VoiceToText';
@@ -196,6 +198,17 @@ const clear = () => {
   return (
     <div className="app">
         {/*<SpeechControl />*/}
+
+        {/* 3D JenReal head that reacts when AI is speaking */}
+        <div className="engine">
+            <Canvas>
+                <SceneContainer isSpeaking={isResponding} />
+            </Canvas>
+        </div>
+
+
+
+
       <video autoPlay loop id="idle-video" className="idle-video" style={{ display: isResponding ? "none" : "block" }}>
         <source src="99.mp4" type="video/mp4" />
       </video>
@@ -228,13 +241,13 @@ const clear = () => {
 
       <div className="search-result1">
         {chatHistory.map((chatItem, index) => (
-          <div key={index}>
-            <p className="answer1">
+          <div key={index} className="answer1">
+
               <span style={{ color: '#00ffa2', fontWeight: 600 }}>
                 {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)}:
               </span>
               <ReactMarkdown>{chatItem.parts[0].text}</ReactMarkdown>
-            </p>
+
           </div>
         ))}
       </div>
